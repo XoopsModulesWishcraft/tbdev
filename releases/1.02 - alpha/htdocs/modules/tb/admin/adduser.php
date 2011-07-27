@@ -58,8 +58,8 @@ require_once "include/password_functions.php";
       $secret = sqlesc($secret);
       $time_now = time();
       
-      @$GLOBALS['xoopsDB']->queryF("INSERT INTO ".$GLOBALS['xoopsDB']->prefix("users")." (added, last_access, secret, username, passhash, status, email) VALUES($time_now, $time_now, $secret, $username, $passhash, 'confirmed', $email)") or sqlerr(__FILE__, __LINE__);
-      $res = @$GLOBALS['xoopsDB']->queryF("SELECT id FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE username=$username");
+      @$GLOBALS['xoopsDB']->queryF("INSERT INTO ".$GLOBALS['xoopsDB']->prefix("tb_users")." (added, last_access, secret, username, passhash, status, email) VALUES($time_now, $time_now, $secret, $username, $passhash, 'confirmed', $email)") or sqlerr(__FILE__, __LINE__);
+      $res = @$GLOBALS['xoopsDB']->queryF("SELECT id FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE username=$username");
       $arr = mysql_fetch_row($res);
       if (!$arr)
         stderr("{$GLOBALS['lang']['stderr_error']}", "{$GLOBALS['lang']['text_username']}");

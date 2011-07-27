@@ -30,7 +30,7 @@ loggedinorreturn();
     
     $HTMLOUT = '';
     
-    $query = $GLOBALS['xoopsDB']->queryF("SELECT users.id, username, email, last_access, class, title, country, status, countries.flagpic, countries.name FROM ".$GLOBALS['xoopsDB']->prefix("users")." LEFT  JOIN ".$GLOBALS['xoopsDB']->prefix("countries")." ON countries.id = users.country WHERE class >=4 AND status='confirmed' ORDER BY username") or sqlerr();
+    $query = $GLOBALS['xoopsDB']->queryF("SELECT users.id, username, email, last_access, class, title, country, status, countries.flagpic, countries.name FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." LEFT  JOIN ".$GLOBALS['xoopsDB']->prefix("countries")." ON countries.id = users.country WHERE class >=4 AND status='confirmed' ORDER BY username") or sqlerr();
 
     while($arr2 = $GLOBALS['xoopsDB']->fetchArray($query)) {
       

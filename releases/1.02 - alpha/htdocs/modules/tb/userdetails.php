@@ -75,7 +75,7 @@ function maketable($res)
     
     
     
-    $r = @$GLOBALS['xoopsDB']->queryF("SELECT * FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE id=$id") or sqlerr();
+    $r = @$GLOBALS['xoopsDB']->queryF("SELECT * FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE id=$id") or sqlerr();
     $user = $GLOBALS['xoopsDB']->fetchArray($r) or stderr("{$GLOBALS['lang']['userdetails_error']}", "{$GLOBALS['lang']['userdetails_no_user']}");
     if ($user["status"] == "pending") die;
     $r = $GLOBALS['xoopsDB']->queryF("SELECT t.id, t.name, t.seeders, t.leechers, c.name AS cname, c.image FROM ".$GLOBALS['xoopsDB']->prefix("torrents")." t LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("categories")." c ON t.category = c.id WHERE t.owner = $id ORDER BY t.name") or sqlerr(__FILE__,__LINE__);

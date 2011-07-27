@@ -100,7 +100,7 @@ function docleanup() {
 	@$GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("torrents")." SET visible='no' WHERE visible='yes' AND last_action < $deadtime");
 
 	$deadtime = time() - $GLOBALS['TBDEV']['signup_timeout'];
-	@$GLOBALS['xoopsDB']->queryF("DELETE FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE status = 'pending' AND added < $deadtime AND last_login < $deadtime AND last_access < $deadtime");
+	@$GLOBALS['xoopsDB']->queryF("DELETE FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE status = 'pending' AND added < $deadtime AND last_login < $deadtime AND last_access < $deadtime");
 
 	$torrents = array();
 	$res = @$GLOBALS['xoopsDB']->queryF("SELECT torrent, seeder, COUNT(*) AS c FROM ".$GLOBALS['xoopsDB']->prefix("peers")." GROUP BY torrent, seeder");
@@ -141,7 +141,7 @@ function docleanup() {
 	$secs = 42*86400;
 	$dt = (time() - $secs);
 	$maxclass = UC_POWER_USER;
-	@$GLOBALS['xoopsDB']->queryF("DELETE FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE status='confirmed' AND class <= $maxclass AND last_access < $dt");
+	@$GLOBALS['xoopsDB']->queryF("DELETE FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE status='confirmed' AND class <= $maxclass AND last_access < $dt");
 
 	// lock topics where last post was made more than x days ago
 /*	$secs = 7*86400;
@@ -153,14 +153,14 @@ function docleanup() {
   }
 */  
   //remove expired warnings
-  $res = @$GLOBALS['xoopsDB']->queryF("SELECT id FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE warned='yes' AND warneduntil < ".time()." AND warneduntil <> 0") or sqlerr(__FILE__, __LINE__);
+  $res = @$GLOBALS['xoopsDB']->queryF("SELECT id FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE warned='yes' AND warneduntil < ".time()." AND warneduntil <> 0") or sqlerr(__FILE__, __LINE__);
   if (mysql_num_rows($res) > 0)
   {
     $dt = time();
     $msg = sqlesc("Your warning has been removed. Please keep in your best behaviour from now on.\n");
     while ($arr = $GLOBALS['xoopsDB']->fetchArray($res))
     {
-      @$GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("users")." SET warned = 'no', warneduntil = 0 WHERE id = {$arr['id']}") or sqlerr(__FILE__, __LINE__);
+      @$GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("tb_users")." SET warned = 'no', warneduntil = 0 WHERE id = {$arr['id']}") or sqlerr(__FILE__, __LINE__);
       @$GLOBALS['xoopsDB']->queryF("INSERT INTO messages (sender, receiver, added, msg, poster) VALUES(0, {$arr['id']}, $dt, $msg, 0)") or sqlerr(__FILE__, __LINE__);
     }
   }
@@ -169,28 +169,28 @@ function docleanup() {
 	$limit = 25*1024*1024*1024;
 	$minratio = 1.05;
 	$maxdt = (time() - 86400*28);
-	$res = @$GLOBALS['xoopsDB']->queryF("SELECT id FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE class = 0 AND uploaded >= $limit AND uploaded / downloaded >= $minratio AND added < $maxdt") or sqlerr(__FILE__, __LINE__);
+	$res = @$GLOBALS['xoopsDB']->queryF("SELECT id FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE class = 0 AND uploaded >= $limit AND uploaded / downloaded >= $minratio AND added < $maxdt") or sqlerr(__FILE__, __LINE__);
 	if (mysql_num_rows($res) > 0)
 	{
 		$dt = time();
 		$msg = sqlesc("Congratulations, you have been auto-promoted to [b]Power User[/b]. :)\nYou can now download dox over 1 meg and view torrent NFOs.\n");
 		while ($arr = $GLOBALS['xoopsDB']->fetchArray($res))
 		{
-			@$GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("users")." SET class = 1 WHERE id = {$arr['id']}") or sqlerr(__FILE__, __LINE__);
+			@$GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("tb_users")." SET class = 1 WHERE id = {$arr['id']}") or sqlerr(__FILE__, __LINE__);
 			@$GLOBALS['xoopsDB']->queryF("INSERT INTO messages (sender, receiver, added, msg, poster) VALUES(0, {$arr['id']}, $dt, $msg, 0)") or sqlerr(__FILE__, __LINE__);
 		}
 	}
 
 	// demote power users
 	$minratio = 0.95;
-	$res = $GLOBALS['xoopsDB']->queryF("SELECT id FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE class = 1 AND uploaded / downloaded < $minratio") or sqlerr(__FILE__, __LINE__);
+	$res = $GLOBALS['xoopsDB']->queryF("SELECT id FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE class = 1 AND uploaded / downloaded < $minratio") or sqlerr(__FILE__, __LINE__);
 	if (mysql_num_rows($res) > 0)
 	{
 		$dt = time();
 		$msg = sqlesc("You have been auto-demoted from [b]Power User[/b] to [b]User[/b] because your share ratio has dropped below $minratio.\n");
 		while ($arr = $GLOBALS['xoopsDB']->fetchArray($res))
 		{
-			@$GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("users")." SET class = 0 WHERE id = {$arr['id']}") or sqlerr(__FILE__, __LINE__);
+			@$GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("tb_users")." SET class = 0 WHERE id = {$arr['id']}") or sqlerr(__FILE__, __LINE__);
 			@$GLOBALS['xoopsDB']->queryF("INSERT INTO messages (sender, receiver, added, msg, poster) VALUES(0, {$arr['id']}, $dt, $msg, 0)") or sqlerr(__FILE__, __LINE__);
 		}
 	}

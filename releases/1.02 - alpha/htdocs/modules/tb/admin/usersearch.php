@@ -753,7 +753,7 @@ if (count($_POST) > 0 );//&& isset($_POST['n']))
   if (!empty($disabled))
   {
   	$distinct = "DISTINCT ";
-    $join_is .= " LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("users")." AS u2 ON u.ip = u2.ip";
+    $join_is .= " LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("tb_users")." AS u2 ON u.ip = u2.ip";
 		$where_is .= ((!empty($where_is))?" AND ":"")."u2.enabled = 'no'";
     $q .= ($q ? "&amp;" : "") . "dip=$disabled";
   }

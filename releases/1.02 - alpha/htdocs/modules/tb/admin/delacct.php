@@ -43,7 +43,7 @@ require_once "include/user_functions.php";
       if (!$username || !$password)
         stderr("{$GLOBALS['lang']['text_error']}", "{$GLOBALS['lang']['text_please']}");
         
-      $res = @$GLOBALS['xoopsDB']->queryF("SELECT * FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE username=" . sqlesc($username) 
+      $res = @$GLOBALS['xoopsDB']->queryF("SELECT * FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE username=" . sqlesc($username) 
                           . "AND passhash=md5(concat(secret,concat(" . sqlesc($password) . ",secret)))") 
                           or sqlerr();
       if (mysql_num_rows($res) != 1)
@@ -51,7 +51,7 @@ require_once "include/user_functions.php";
       $arr = $GLOBALS['xoopsDB']->fetchArray($res);
 
       $id = $arr['id'];
-      $res = @$GLOBALS['xoopsDB']->queryF("DELETE FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE id=$id") or sqlerr();
+      $res = @$GLOBALS['xoopsDB']->queryF("DELETE FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE id=$id") or sqlerr();
       if (mysql_affected_rows() != 1)
         stderr("{$GLOBALS['lang']['text_error']}", "{$GLOBALS['lang']['text_unable']}");
         

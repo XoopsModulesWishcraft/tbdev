@@ -191,8 +191,8 @@ loggedinorreturn();
       $pager = pager($torrentsperpage, $count, "browse.php?" . $addparam);
 
       $query = "SELECT torrents.id, torrents.category, torrents.leechers, torrents.seeders, torrents.name, torrents.times_completed, torrents.size, torrents.added, torrents.type,  torrents.comments,torrents.numfiles,torrents.filename,torrents.owner,IF(torrents.nfo <> '', 1, 0) as nfoav," .
-    //	"IF(torrents.numratings < {$GLOBALS['TBDEV']['minvotes']}, NULL, ROUND(torrents.ratingsum / torrents.numratings, 1)) AS rating, categories.name AS cat_name, categories.image AS cat_pic, users.username FROM ".$GLOBALS['xoopsDB']->prefix("torrents")." LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("categories")." ON category = categories.id LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("users")." ON torrents.owner = users.id $where $orderby $limit";
-      "categories.name AS cat_name, categories.image AS cat_pic, users.username FROM ".$GLOBALS['xoopsDB']->prefix("torrents")." LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("categories")." ON category = categories.id LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("users")." ON torrents.owner = users.id $where $orderby {$pager['limit']}";
+    //	"IF(torrents.numratings < {$GLOBALS['TBDEV']['minvotes']}, NULL, ROUND(torrents.ratingsum / torrents.numratings, 1)) AS rating, categories.name AS cat_name, categories.image AS cat_pic, users.username FROM ".$GLOBALS['xoopsDB']->prefix("torrents")." LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("categories")." ON category = categories.id LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("tb_users")." ON torrents.owner = users.id $where $orderby $limit";
+      "categories.name AS cat_name, categories.image AS cat_pic, users.username FROM ".$GLOBALS['xoopsDB']->prefix("torrents")." LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("categories")." ON category = categories.id LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("tb_users")." ON torrents.owner = users.id $where $orderby {$pager['limit']}";
       $res = $GLOBALS['xoopsDB']->queryF($query) or die(mysql_error());
     }
     else

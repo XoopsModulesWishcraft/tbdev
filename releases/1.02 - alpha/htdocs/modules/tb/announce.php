@@ -220,7 +220,7 @@ $seeder = ($left == 0) ? "yes" : "no";
 dbconn();
 
 
-$user_query = $GLOBALS['xoopsDB']->queryF("SELECT id, uploaded, downloaded, class, enabled FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE passkey=".sqlesc($passkey)) or err("Tracker error 2");
+$user_query = $GLOBALS['xoopsDB']->queryF("SELECT id, uploaded, downloaded, class, enabled FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE passkey=".sqlesc($passkey)) or err("Tracker error 2");
 
 if ( mysql_num_rows($user_query) != 1 )
 
@@ -416,7 +416,7 @@ else
 	$downthis = max(0, $downloaded - $self["downloaded"]);
 
 	if ($upthis > 0 || $downthis > 0)
-		$GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("users")." SET uploaded = uploaded + $upthis, downloaded = downloaded + $downthis WHERE id=".$user['id']) or err("Tracker error 3");
+		$GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("tb_users")." SET uploaded = uploaded + $upthis, downloaded = downloaded + $downthis WHERE id=".$user['id']) or err("Tracker error 3");
 }
 
 ///////////////////////////////////////////////////////////////////////////////

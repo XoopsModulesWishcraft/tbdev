@@ -45,7 +45,7 @@ require_once "include/user_functions.php";
 dbconn();
 
 
-    $res = $GLOBALS['xoopsDB']->queryF("SELECT editsecret FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE id = $id");
+    $res = $GLOBALS['xoopsDB']->queryF("SELECT editsecret FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE id = $id");
     $row = $GLOBALS['xoopsDB']->fetchArray($res);
 
     if (!$row)
@@ -59,7 +59,7 @@ dbconn();
     if ($md5 != md5($sec . $email . $sec))
       stderr("{$GLOBALS['lang']['confirmmail_user_error']}", "{$GLOBALS['lang']['confirmmail_not_complete']}");
 
-   @$GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("users")." SET editsecret='', email=" . sqlesc($email) . " WHERE id=$id AND editsecret=" . sqlesc($row["editsecret"]));
+   @$GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("tb_users")." SET editsecret='', email=" . sqlesc($email) . " WHERE id=$id AND editsecret=" . sqlesc($row["editsecret"]));
 
     if (!mysql_affected_rows())
       stderr("{$GLOBALS['lang']['confirmmail_user_error']}", "{$GLOBALS['lang']['confirmmail_not_complete']}");

@@ -118,14 +118,14 @@ function userlogin() {
     $id = 0 + get_mycookie('uid');
     if (!$id || strlen( get_mycookie('pass') ) != 32)
         return;
-    $res = $GLOBALS['xoopsDB']->queryF("SELECT * FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE id = $id AND enabled='yes' AND status = 'confirmed'");// or die(mysql_error());
+    $res = $GLOBALS['xoopsDB']->queryF("SELECT * FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE id = $id AND enabled='yes' AND status = 'confirmed'");// or die(mysql_error());
     $row = $GLOBALS['xoopsDB']->fetchArray($res);
     if (!$row)
         return;
     //$sec = hash_pad($row["secret"]);
     if (get_mycookie('pass') !== $row["passhash"])
         return;
-    $GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("users")." SET last_access='" . TIME_NOW . "', ip=".sqlesc($ip)." WHERE id=" . $row["id"]);// or die(mysql_error());
+    $GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("tb_users")." SET last_access='" . TIME_NOW . "', ip=".sqlesc($ip)." WHERE id=" . $row["id"]);// or die(mysql_error());
     $row['ip'] = $ip;
     $GLOBALS["CURUSER"] = $row;
     
@@ -394,7 +394,7 @@ function logincookie($id, $password, $secret, $updatedb = 1, $expires = 0x7fffff
     setcookie("pass", $md5, $expires, "/");
 
     if ($updatedb)
-        $GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("users")." SET last_login = NOW() WHERE id = $id");
+        $GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("tb_users")." SET last_login = NOW() WHERE id = $id");
 }
 */
 
@@ -406,7 +406,7 @@ function logincookie($id, $passhash, $updatedb = 1, $expires = 0x7fffffff)
     set_mycookie( "pass", $passhash, $expires );
     
     if ($updatedb)
-      @$GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("users")." SET last_login = ".TIME_NOW." WHERE id = $id");
+      @$GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("tb_users")." SET last_login = ".TIME_NOW." WHERE id = $id");
 }
 
 function set_mycookie( $name, $value="", $expires_in=0, $sticky=1 )

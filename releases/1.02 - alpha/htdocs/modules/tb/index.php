@@ -30,15 +30,15 @@ loggedinorreturn();
     
     $HTMLOUT = '';
 /*
-$a = @$GLOBALS['xoopsDB']->fetchArray(@$GLOBALS['xoopsDB']->queryF("SELECT id,username FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE status='confirmed' ORDER BY id DESC LIMIT 1")) or die(mysql_error());
+$a = @$GLOBALS['xoopsDB']->fetchArray(@$GLOBALS['xoopsDB']->queryF("SELECT id,username FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE status='confirmed' ORDER BY id DESC LIMIT 1")) or die(mysql_error());
 if ($GLOBALS['CURUSER'])
   $latestuser = "<a href='userdetails.php?id=" . $a["id"] . "'>" . $a["username"] . "</a>";
 else
   $latestuser = $a['username'];
 */
 
-    $registered = number_format(get_row_count("users"));
-    //$unverified = number_format(get_row_count("users", "WHERE status='pending'"));
+    $registered = number_format(get_row_count("tb_users"));
+    //$unverified = number_format(get_row_count("tb_users", "WHERE status='pending'"));
     $torrents = number_format(get_row_count("torrents"));
     //$dead = number_format(get_row_count("torrents", "WHERE visible='no'"));
 

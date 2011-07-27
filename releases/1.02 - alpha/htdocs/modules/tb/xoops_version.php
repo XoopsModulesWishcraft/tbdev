@@ -97,7 +97,7 @@ $modversion['tables'][11] = "searchcloud";
 $modversion['tables'][12] = "sitelog";
 $modversion['tables'][13] = "stylesheets";
 $modversion['tables'][14] = "torrents";
-$modversion['tables'][15] = "users";
+$modversion['tables'][15] = "tb_users";
 
 // Templates
 $i=0;

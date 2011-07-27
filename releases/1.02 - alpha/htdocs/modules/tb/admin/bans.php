@@ -79,7 +79,7 @@ require_once "include/user_functions.php";
 
 
 
-    $res = $GLOBALS['xoopsDB']->queryF("SELECT b.*, u.username FROM ".$GLOBALS['xoopsDB']->prefix("bans")." b LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("users")." u on b.addedby = u.id ORDER BY added DESC") or sqlerr(__FILE__,__LINE__);
+    $res = $GLOBALS['xoopsDB']->queryF("SELECT b.*, u.username FROM ".$GLOBALS['xoopsDB']->prefix("bans")." b LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("tb_users")." u on b.addedby = u.id ORDER BY added DESC") or sqlerr(__FILE__,__LINE__);
 
     $configfile="<"."?php\n\n\$bans = array(\n";
 

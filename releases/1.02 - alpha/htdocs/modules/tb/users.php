@@ -106,7 +106,7 @@ loggedinorreturn();
     $browsemenu = '';
     $pagemenu = '';
 
-    $res = $GLOBALS['xoopsDB']->queryF("SELECT COUNT(*) FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE $query") or sqlerr(__FILE__,__LINE__);
+    $res = $GLOBALS['xoopsDB']->queryF("SELECT COUNT(*) FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE $query") or sqlerr(__FILE__,__LINE__);
     $arr = mysql_fetch_row($res);
 
     if($arr[0] > $perpage) {
@@ -151,7 +151,7 @@ loggedinorreturn();
     $offset = ($page * $perpage) - $perpage;
 
     if($arr[0] > 0) {
-        $res = $GLOBALS['xoopsDB']->queryF("SELECT users.*, countries.name, countries.flagpic FROM ".$GLOBALS['xoopsDB']->prefix("users")." FORCE INDEX ( username ) LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("countries")." ON country = countries.id WHERE $query ORDER BY username LIMIT $offset,$perpage") or sqlerr(__FILE__,__LINE__);
+        $res = $GLOBALS['xoopsDB']->queryF("SELECT users.*, countries.name, countries.flagpic FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." FORCE INDEX ( username ) LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("countries")." ON country = countries.id WHERE $query ORDER BY username LIMIT $offset,$perpage") or sqlerr(__FILE__,__LINE__);
     //$num = mysql_num_rows($res);
 
     $HTMLOUT  .= "<table border='1' cellspacing='0' cellpadding='5'>\n";

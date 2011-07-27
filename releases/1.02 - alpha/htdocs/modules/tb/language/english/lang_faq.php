@@ -6,7 +6,7 @@ $GLOBALS['lang'] = array(
 'faq_welcome' => "<b>Welcome to {$GLOBALS['TBDEV']['site_name']}!</b><br />
     <br />
     Our goal is not to become another Bytemonsoon or Suprnova (not dizzying either of them though).
-    The goal is to provide the absolutely latest stuff. Therefore, only specially authorised ".$GLOBALS['xoopsDB']->prefix("users")." have
+    The goal is to provide the absolutely latest stuff. Therefore, only specially authorised ".$GLOBALS['xoopsDB']->prefix("tb_users")." have
     permission to upload torrents. If you have access to 0-day stuff do not hesitate to
     <a class='altlink' href='staff.php'>contact</a> us!<br />
     <br />
@@ -175,7 +175,7 @@ $GLOBALS['lang'] = array(
     <br />
     <b>Why is my IP displayed on my details page?</b><a name='user5' id='user5'></a><br />
     <br />
-    Only you and the site moderators can view your IP address and email. Regular ".$GLOBALS['xoopsDB']->prefix("users")." do not see that information.<br />
+    Only you and the site moderators can view your IP address and email. Regular ".$GLOBALS['xoopsDB']->prefix("tb_users")." do not see that information.<br />
     <br />
     <br />
     <b>Help! I cannot login!? (a.k.a. Login of Death)</b><a name='user6' id='user6'></a><br />
@@ -280,7 +280,7 @@ $GLOBALS['lang'] = array(
     <tr>
       <td class='embedded' bgcolor='#F5F4EA' valign='top'>&nbsp; <b>VIP</b></td>
       <td class='embedded' width='5'>&nbsp;</td>
-      <td class='embedded' valign='top'>Assigned by mods at their discretion to ".$GLOBALS['xoopsDB']->prefix("users")." they feel contribute
+      <td class='embedded' valign='top'>Assigned by mods at their discretion to ".$GLOBALS['xoopsDB']->prefix("tb_users")." they feel contribute
       something special to the site.<br />
       (Anyone begging for VIP status will be automatically disqualified.)</td>
     </tr>
@@ -309,7 +309,7 @@ $GLOBALS['lang'] = array(
     <br />
     <b>Why can't my friend become a member?</b><a name='userc'></a><br />
     <br />
-    There is a 75.000 ".$GLOBALS['xoopsDB']->prefix("users")." limit. When that number is reached we stop accepting new members.
+    There is a 75.000 ".$GLOBALS['xoopsDB']->prefix("tb_users")." limit. When that number is reached we stop accepting new members.
     Accounts inactive for more than 42 days are automatically deleted, so keep trying.
     (There is no reservation or queuing system, don't ask for that.)<br />
     <br />
@@ -391,7 +391,7 @@ $GLOBALS['lang'] = array(
     To make sure your ".$GLOBALS['xoopsDB']->prefix("torrents")." show up in your profile you should visit the site immediately before starting a session.
     <br />
     <br />
-    (The only way to completely stop foreign ".$GLOBALS['xoopsDB']->prefix("torrents")." from showing in profiles is to forbid ".$GLOBALS['xoopsDB']->prefix("users")." without
+    (The only way to completely stop foreign ".$GLOBALS['xoopsDB']->prefix("torrents")." from showing in profiles is to forbid ".$GLOBALS['xoopsDB']->prefix("tb_users")." without
     an individual IP from accessing the site. Yes, that means you. Complain at your own risk.)<br />
     <br />
     <br />
@@ -409,7 +409,7 @@ $GLOBALS['lang'] = array(
     This is a very particular case in that all computers in the LAN will appear to the outside world as having the same IP. We must distinguish
     between two cases:<br />
     <br />
-    <b>1.</b> <i>You are the single {$GLOBALS['TBDEV']['site_name']} ".$GLOBALS['xoopsDB']->prefix("users")." in the LAN</i><br />
+    <b>1.</b> <i>You are the single {$GLOBALS['TBDEV']['site_name']} ".$GLOBALS['xoopsDB']->prefix("tb_users")." in the LAN</i><br />
     <br />
     You should use the same {$GLOBALS['TBDEV']['site_name']} account in all the computers.<br />
     <br />
@@ -420,12 +420,12 @@ $GLOBALS['lang'] = array(
     In the NAT case you should configure different ranges for clients on different computers and create appropriate NAT rules in the router. (Details vary widely from router to router and are outside the scope of this FAQ. Check your router documentation and/or support forum.)<br />
     <br />
     <br />
-    <b>2.</b> <i>There are multiple {$GLOBALS['TBDEV']['site_name']} ".$GLOBALS['xoopsDB']->prefix("users")." in the LAN</i><br />
+    <b>2.</b> <i>There are multiple {$GLOBALS['TBDEV']['site_name']} ".$GLOBALS['xoopsDB']->prefix("tb_users")." in the LAN</i><br />
     <br />
     At present there is no way of making this setup always work properly with {$GLOBALS['TBDEV']['site_name']}.
     Each torrent will be associated with the user who last accessed the site from within
     the LAN before the torrent was started.
-    Unless there is cooperation between the ".$GLOBALS['xoopsDB']->prefix("users")." mixing of statistics is possible.
+    Unless there is cooperation between the ".$GLOBALS['xoopsDB']->prefix("tb_users")." mixing of statistics is possible.
     (User A accesses the site, downloads a .torrent file, but does not start the torrent immediately.
     Meanwhile, user B accesses the site. User A then starts the torrent. The torrent will count
     towards user B's statistics, not user A's.)
@@ -447,7 +447,7 @@ $GLOBALS['lang'] = array(
 'faq_uploading_body' => "<br />
     <b>Why can't I upload torrents?</b><a name='up1'></a><br />
     <br />
-    Only specially authorized ".$GLOBALS['xoopsDB']->prefix("users")." (<font color='#4040C0'><b>Uploaders</b></font>) have permission to upload torrents.<br />
+    Only specially authorized ".$GLOBALS['xoopsDB']->prefix("tb_users")." (<font color='#4040C0'><b>Uploaders</b></font>) have permission to upload torrents.<br />
     <br />
     <br />
     <b>What criteria must I meet before I can join the <font color='#4040C0'>Uploader</font> team?</b><a name='up2'></a><br />
@@ -467,13 +467,13 @@ $GLOBALS['lang'] = array(
     <br />
     <b>Can I upload your ".$GLOBALS['xoopsDB']->prefix("torrents")." to other trackers?</b><a name='up3'></a><br />
     <br />
-    No. We are a closed, limited-membership community. Only registered ".$GLOBALS['xoopsDB']->prefix("users")." can use the TB tracker.
+    No. We are a closed, limited-membership community. Only registered ".$GLOBALS['xoopsDB']->prefix("tb_users")." can use the TB tracker.
     Posting our ".$GLOBALS['xoopsDB']->prefix("torrents")." on other trackers is useless, since most people who attempt to download them will
     be unable to connect with us. This generates a lot of frustration and bad-will against us at {$GLOBALS['TBDEV']['site_name']},
     and will therefore not be tolerated.<br />
     <br />
     Complaints from other sites' administrative staff about our ".$GLOBALS['xoopsDB']->prefix("torrents")." being posted on their sites will
-    result in the banning of the ".$GLOBALS['xoopsDB']->prefix("users")." responsible.<br />
+    result in the banning of the ".$GLOBALS['xoopsDB']->prefix("tb_users")." responsible.<br />
     <br />
     (However, the ".$GLOBALS['xoopsDB']->prefix("files")." you download from us are yours to do as you please. You can always create another
     torrent, pointing to some other tracker, and upload it to the site of your choice.)<br />",
@@ -533,8 +533,8 @@ $GLOBALS['lang'] = array(
     <b>Why do I get a &quot;Not authorized (xx h) - READ THE FAQ!&quot; error?</b><a name='dl8' id='dl8'></a><br />
     <br />
     From the time that each <b>new</b> torrent is uploaded to the tracker, there is a period of time that
-    some ".$GLOBALS['xoopsDB']->prefix("users")." must wait before they can download it.<br />
-    This delay in downloading will only affect ".$GLOBALS['xoopsDB']->prefix("users")." with a low ratio, and ".$GLOBALS['xoopsDB']->prefix("users")." with low upload amounts.<br />
+    some ".$GLOBALS['xoopsDB']->prefix("tb_users")." must wait before they can download it.<br />
+    This delay in downloading will only affect ".$GLOBALS['xoopsDB']->prefix("tb_users")." with a low ratio, and ".$GLOBALS['xoopsDB']->prefix("tb_users")." with low upload amounts.<br />
     <br />
     <table cellspacing='3' cellpadding='0'>
      <tr>
@@ -594,12 +594,12 @@ $GLOBALS['lang'] = array(
 'faq_totup' => "total uploaded is ",
 'faq_ratiois' => "ratio is ",
 'faq_nodelay' => "you will experience no delay.",
-'faq_downloading_body1' => "This applies to new ".$GLOBALS['xoopsDB']->prefix("users")." as well, so opening a new account will not help. Note also that this
+'faq_downloading_body1' => "This applies to new ".$GLOBALS['xoopsDB']->prefix("tb_users")." as well, so opening a new account will not help. Note also that this
     works at tracker level, you will be able to grab the .torrent file itself at any time.<br />
     <br />
     <!--The delay applies only to leeching, not to seeding. If you got the ".$GLOBALS['xoopsDB']->prefix("files")." from any other source and
     wish to seed them you may do so at any time irrespectively of your ratio or total uploaded.<br />-->
-    N.B. Due to some ".$GLOBALS['xoopsDB']->prefix("users")." exploiting the 'no-delay-for-seeders' policy we had to change it. The delay
+    N.B. Due to some ".$GLOBALS['xoopsDB']->prefix("tb_users")." exploiting the 'no-delay-for-seeders' policy we had to change it. The delay
     now applies to both seeding and leeching. So if you are subject to a delay and get the ".$GLOBALS['xoopsDB']->prefix("files")." from
     some other source you will not be able to seed them until the delay has elapsed.<br />
     <br />

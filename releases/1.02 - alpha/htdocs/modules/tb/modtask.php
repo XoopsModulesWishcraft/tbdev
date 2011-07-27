@@ -38,7 +38,7 @@ if ((isset($_POST['action'])) && ($_POST['action'] == "edituser"))
     if (!is_valid_id($userid)) stderr("{$GLOBALS['lang']['modtask_error']}", "{$GLOBALS['lang']['modtask_bad_id']}");
 
     // Fetch current user data...
-    $res = $GLOBALS['xoopsDB']->queryF("SELECT * FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE id=".sqlesc($userid)) or sqlerr(__FILE__, __LINE__);
+    $res = $GLOBALS['xoopsDB']->queryF("SELECT * FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE id=".sqlesc($userid)) or sqlerr(__FILE__, __LINE__);
     $user = $GLOBALS['xoopsDB']->fetchArray($res) or sqlerr(__FILE__, __LINE__);
     
     //== Check to make sure your not editing someone of the same or higher class
@@ -331,9 +331,9 @@ if ((isset($_POST['action'])) && ($_POST['action'] == "edituser"))
     if (($GLOBALS['CURUSER']['class'] == UC_SYSOP && ($user['modcomment'] != $_POST['modcomment'] || $modcomment!=$_POST['modcomment'])) || ($GLOBALS['CURUSER']['class']<UC_SYSOP && $modcomment != $user['modcomment']))
     $updateset[] = "modcomment = " . sqlesc($modcomment);
 
-    //$GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("users")." SET " . implode(", ", $updateset) . " WHERE id=".sqlesc($userid)) or sqlerr(__FILE__, __LINE__);
+    //$GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("tb_users")." SET " . implode(", ", $updateset) . " WHERE id=".sqlesc($userid)) or sqlerr(__FILE__, __LINE__);
     if (sizeof($updateset)>0) 
-      @$GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("users")." SET  " . implode(", ", $updateset) . " WHERE id=$userid") or sqlerr(__FILE__, __LINE__);
+      @$GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("tb_users")." SET  " . implode(", ", $updateset) . " WHERE id=$userid") or sqlerr(__FILE__, __LINE__);
    
     $returnto = $_POST["returnto"];
     header("Location: {$GLOBALS['TBDEV']['baseurl']}/$returnto");

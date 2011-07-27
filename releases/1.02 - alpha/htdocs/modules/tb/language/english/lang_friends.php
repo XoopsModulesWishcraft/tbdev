@@ -21,7 +21,7 @@ $GLOBALS['lang'] = array(
 'friends_last_seen' => "last seen on",
 'friends_remove' => "Remove",
 'friends_pm' => "Send PM",
-'friends_blocks_empty' => "Your blocked ".$GLOBALS['xoopsDB']->prefix("users")." list is empty",
+'friends_blocks_empty' => "Your blocked ".$GLOBALS['xoopsDB']->prefix("tb_users")." list is empty",
 
 #blocks
 'friends_personal' => "Personal lists for",

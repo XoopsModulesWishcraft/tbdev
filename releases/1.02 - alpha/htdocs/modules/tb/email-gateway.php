@@ -31,7 +31,7 @@ loggedinorreturn();
     if ( !is_valid_id($id) )
       stderr("{$GLOBALS['lang']['email_error']}", "{$GLOBALS['lang']['email_bad_id']}");
 
-    $res = $GLOBALS['xoopsDB']->queryF("SELECT username, class, email FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE id=$id");
+    $res = $GLOBALS['xoopsDB']->queryF("SELECT username, class, email FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE id=$id");
     $arr = $GLOBALS['xoopsDB']->fetchArray($res) or stderr("{$GLOBALS['lang']['email_error']}", "{$GLOBALS['lang']['email_no_user']}");
     $username = $arr["username"];
     

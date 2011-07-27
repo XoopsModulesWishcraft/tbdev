@@ -61,9 +61,9 @@ require "include/html_functions.php";
       $orderby = "name";
 
     $query = "SELECT u.id, u.username AS name, MAX(t.added) AS last, COUNT(DISTINCT t.id) AS n_t, COUNT(p.id) as n_p
-      FROM ".$GLOBALS['xoopsDB']->prefix("users")." as u LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("torrents")." as t ON u.id = t.owner LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("peers")." as p ON t.id = p.torrent WHERE u.class = ". UC_UPLOADER ."
+      FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." as u LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("torrents")." as t ON u.id = t.owner LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("peers")." as p ON t.id = p.torrent WHERE u.class = ". UC_UPLOADER ."
       GROUP BY u.id UNION SELECT u.id, u.username AS name, MAX(t.added) AS last, COUNT(DISTINCT t.id) AS n_t, COUNT(p.id) as n_p
-      FROM ".$GLOBALS['xoopsDB']->prefix("users")." as u LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("torrents")." as t ON u.id = t.owner LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("peers")." as p ON t.id = p.torrent WHERE u.class > ". UC_UPLOADER ."
+      FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." as u LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("torrents")." as t ON u.id = t.owner LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("peers")." as p ON t.id = p.torrent WHERE u.class > ". UC_UPLOADER ."
       GROUP BY u.id ORDER BY $orderby";
 
     $res = $GLOBALS['xoopsDB']->queryF($query) or sqlerr(__FILE__, __LINE__);

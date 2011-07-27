@@ -91,7 +91,7 @@ function show_level()
 	{
 		$title = "User Reputation Manager - Overview";
 		
-		$html = "<p>On this page you can modify the minimum amount required for each ".$GLOBALS['xoopsDB']->prefix("reputation")." level. Make sure you press Update Minimum Levels to save your changes. You cannot set the same minimum amount to more than one level.<br />From here you can also choose to edit or remove any single level. Click the Edit link to modify the Level description (see Editing a Reputation Level) or click Remove to delete a level. If you remove a level or modify the minimum ".$GLOBALS['xoopsDB']->prefix("reputation")." needed to be at a level, all ".$GLOBALS['xoopsDB']->prefix("users")." will be updated to reflect their new level if necessary.</p><br />";
+		$html = "<p>On this page you can modify the minimum amount required for each ".$GLOBALS['xoopsDB']->prefix("reputation")." level. Make sure you press Update Minimum Levels to save your changes. You cannot set the same minimum amount to more than one level.<br />From here you can also choose to edit or remove any single level. Click the Edit link to modify the Level description (see Editing a Reputation Level) or click Remove to delete a level. If you remove a level or modify the minimum ".$GLOBALS['xoopsDB']->prefix("reputation")." needed to be at a level, all ".$GLOBALS['xoopsDB']->prefix("tb_users")." will be updated to reflect their new level if necessary.</p><br />";
 
 		$query = $GLOBALS['xoopsDB']->queryF( 'SELECT * FROM  '.$GLOBALS['xoopsDB']->prefix("reputationlevel").'  ORDER BY minimumreputation ASC' );
 		
@@ -331,8 +331,8 @@ function show_form_rep()
 					FROM ".$GLOBALS['xoopsDB']->prefix("reputation")." r
 					left join posts p on p.id=r.postid
 					left join topics t on p.topicid=t.id
-					left join ".$GLOBALS['xoopsDB']->prefix("users")." leftfor on leftfor.id=r.userid
-					left join ".$GLOBALS['xoopsDB']->prefix("users")." leftby on leftby.id=r.whoadded
+					left join ".$GLOBALS['xoopsDB']->prefix("tb_users")." leftfor on leftfor.id=r.userid
+					left join ".$GLOBALS['xoopsDB']->prefix("tb_users")." leftby on leftby.id=r.whoadded
 					WHERE reputationid = ".intval($input['reputationid']) );
 		
 
@@ -379,7 +379,7 @@ function view_list()
 		
 		$title = 'User Reputation Manager';
 		$html =  "<h2>View Reputation Comments</h2>";
-		$html .= "<p>This page allows you to search for ".$GLOBALS['xoopsDB']->prefix("reputation")." comments left by / for specific ".$GLOBALS['xoopsDB']->prefix("users")." over the specified date range.</p>";
+		$html .= "<p>This page allows you to search for ".$GLOBALS['xoopsDB']->prefix("reputation")." comments left by / for specific ".$GLOBALS['xoopsDB']->prefix("tb_users")." over the specified date range.</p>";
 
 		$html .= "<form action='reputation_ad.php' name='list_form' method='post'>
 				<input name='mode' value='list' type='hidden' />
@@ -448,7 +448,7 @@ function view_list()
 
 			if( ! empty($input['leftby']) )
 			{
-				$left_b = @$GLOBALS['xoopsDB']->queryF( "SELECT id FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE username = ".sqlesc($input['leftby']) );
+				$left_b = @$GLOBALS['xoopsDB']->queryF( "SELECT id FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE username = ".sqlesc($input['leftby']) );
 
 				if( ! mysql_num_rows($left_b) )
 				{
@@ -461,7 +461,7 @@ function view_list()
 
 			if( ! empty($input['leftfor']) )
 			{
-				$left_f = @$GLOBALS['xoopsDB']->queryF( "SELECT id FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE username = ".sqlesc($input['leftfor']) );
+				$left_f = @$GLOBALS['xoopsDB']->queryF( "SELECT id FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE username = ".sqlesc($input['leftfor']) );
 
 				if( ! mysql_num_rows($left_f) )
 				{
@@ -545,8 +545,8 @@ function view_list()
 									leftby.username as leftby_name 
 									FROM ".$GLOBALS['xoopsDB']->prefix("reputation")." r 
 									left join posts p on p.id=r.postid 
-									left join ".$GLOBALS['xoopsDB']->prefix("users")." leftfor on leftfor.id=r.userid 
-									left join ".$GLOBALS['xoopsDB']->prefix("users")." leftby on leftby.id=r.whoadded 
+									left join ".$GLOBALS['xoopsDB']->prefix("tb_users")." leftfor on leftfor.id=r.userid 
+									left join ".$GLOBALS['xoopsDB']->prefix("tb_users")." leftby on leftby.id=r.whoadded 
 									WHERE $cond ORDER BY $order LIMIT $first,$deflimit" );
 			
 			if( ! mysql_num_rows( $query ) ) stderr('DB ERROR', 'Nothing here');
@@ -597,7 +597,7 @@ function do_delete_rep()
 
 		// do the delete
 		@$GLOBALS['xoopsDB']->queryF( "DELETE FROM ".$GLOBALS['xoopsDB']->prefix("reputation")." WHERE reputationid=".intval($r['reputationid'] ) );
-		@$GLOBALS['xoopsDB']->queryF( "UPDATE ".$GLOBALS['xoopsDB']->prefix("users")." SET ".$GLOBALS['xoopsDB']->prefix("reputation")." = (reputation-{$r['reputation']} ) WHERE id=".intval($r['userid']) );
+		@$GLOBALS['xoopsDB']->queryF( "UPDATE ".$GLOBALS['xoopsDB']->prefix("tb_users")." SET ".$GLOBALS['xoopsDB']->prefix("reputation")." = (reputation-{$r['reputation']} ) WHERE id=".intval($r['userid']) );
 
 		redirect( "reputation_ad.php?mode=list", "Deleted Reputation Successfully", 5 );
 	}
@@ -646,7 +646,7 @@ function do_edit_rep()
 			}
 
 			$diff = $oldrep - $newrep;
-			@$GLOBALS['xoopsDB']->queryF( "UPDATE ".$GLOBALS['xoopsDB']->prefix("users")." SET ".$GLOBALS['xoopsDB']->prefix("reputation")." = (reputation-{$diff}) WHERE id=".intval($r['userid']) );
+			@$GLOBALS['xoopsDB']->queryF( "UPDATE ".$GLOBALS['xoopsDB']->prefix("tb_users")." SET ".$GLOBALS['xoopsDB']->prefix("reputation")." = (reputation-{$diff}) WHERE id=".intval($r['userid']) );
 		
 		}
 */
@@ -661,7 +661,7 @@ function do_edit_rep()
         {
 
         $diff = $oldrep - $newrep;
-        @$GLOBALS['xoopsDB']->queryF( "UPDATE ".$GLOBALS['xoopsDB']->prefix("users")." SET ".$GLOBALS['xoopsDB']->prefix("reputation")." = (reputation-{$diff}) WHERE id=".intval($r['userid']) );
+        @$GLOBALS['xoopsDB']->queryF( "UPDATE ".$GLOBALS['xoopsDB']->prefix("tb_users")." SET ".$GLOBALS['xoopsDB']->prefix("reputation")." = (reputation-{$diff}) WHERE id=".intval($r['userid']) );
         
         } 
     

@@ -62,7 +62,7 @@ $GLOBALS['lang'] = array(
 'rules_moderating_body' => "<tr>
         <td class='embedded' bgcolor='#F5F4EA' valign='top' width='80'>&nbsp; <b>Power User</b></td>
         <td class='embedded' width='5'>&nbsp;</td>
-        <td class='embedded'>Automatically given to (and revoked from) ".$GLOBALS['xoopsDB']->prefix("users")." who have been members for at least 4 weeks, have uploaded at least
+        <td class='embedded'>Automatically given to (and revoked from) ".$GLOBALS['xoopsDB']->prefix("tb_users")." who have been members for at least 4 weeks, have uploaded at least
         25 GB and have a share ratio above 1.05. Moderator changes of status last only until the next execution of the script.</td>
       </tr>
       <tr>
@@ -73,12 +73,12 @@ $GLOBALS['lang'] = array(
       <tr>
         <td class='embedded' bgcolor='#F5F4EA' valign='top'>&nbsp; <b>VIP</b></td>
         <td class='embedded' width='5'>&nbsp;</td>
-        <td class='embedded'>Conferred to ".$GLOBALS['xoopsDB']->prefix("users")." you feel contribute something special to the site. (Anyone begging for VIP status will be automatically disqualified)</td>
+        <td class='embedded'>Conferred to ".$GLOBALS['xoopsDB']->prefix("tb_users")." you feel contribute something special to the site. (Anyone begging for VIP status will be automatically disqualified)</td>
       </tr>
       <tr>
         <td class='embedded' bgcolor='#F5F4EA' valign='top'>&nbsp; <b>Other</b></td>
         <td class='embedded' width='5'>&nbsp;</td>
-        <td class='embedded'>Customised title given to special ".$GLOBALS['xoopsDB']->prefix("users")." only (Not available to Users or Power Users).</td>
+        <td class='embedded'>Customised title given to special ".$GLOBALS['xoopsDB']->prefix("tb_users")." only (Not available to Users or Power Users).</td>
       </tr>
       <tr>
         <td class='embedded' bgcolor='#F5F4EA' valign='top'>&nbsp; <b><font color='#4040c0'>Uploader</font></b></td>
@@ -97,7 +97,7 @@ $GLOBALS['lang'] = array(
       <li>Don't be afraid to say <b>NO</b>! (a.k.a. 'Helshad's rule'.)</li>
       <li>Don't defy another mod in public, instead send a PM or through IM.</li>
       <li>Be tolerant! Give the user(s) a chance to reform.</li>
-      <li>Don't act prematurely, let the ".$GLOBALS['xoopsDB']->prefix("users")." make their mistakes and THEN correct them.</li>
+      <li>Don't act prematurely, let the ".$GLOBALS['xoopsDB']->prefix("tb_users")." make their mistakes and THEN correct them.</li>
       <li>Try correcting any 'off topics' rather then closing a thread.</li>
       <li>Move topics rather than locking them.</li>
       <li>Be tolerant when moderating the Chit-chat section (give them some slack).</li>
@@ -111,11 +111,11 @@ $GLOBALS['lang'] = array(
 'rules_mod_options_body' => "<ul>
       <li>You can delete and edit forum posts.</li>
       <li>You can delete and edit torrents.</li>
-      <li>You can delete and change ".$GLOBALS['xoopsDB']->prefix("users")." avatars.</li>
+      <li>You can delete and change ".$GLOBALS['xoopsDB']->prefix("tb_users")." avatars.</li>
       <li>You can disable user accounts.</li>
       <li>You can edit the title of VIP's.</li>
       <li>You can see the complete info of all users.</li>
-      <li>You can add comments to ".$GLOBALS['xoopsDB']->prefix("users")." (for other mods and admins to read).</li>
+      <li>You can add comments to ".$GLOBALS['xoopsDB']->prefix("tb_users")." (for other mods and admins to read).</li>
       <li>You can stop reading now 'cuz you already knew about these options. ;)</li>
       <li>Lastly, check out the <a href='staff.php' class='altlink'>Staff</a> page (top right corner).</li>
       </ul>",

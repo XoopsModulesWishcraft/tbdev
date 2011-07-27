@@ -50,7 +50,7 @@ loggedinorreturn();
   if (!isset($GLOBALS['CURUSER']['passkey']) || strlen($GLOBALS['CURUSER']['passkey']) != 32) 
   {
     $GLOBALS['CURUSER']['passkey'] = md5($GLOBALS['CURUSER']['username'].time().$GLOBALS['CURUSER']['passhash']);
-    @$GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("users")." SET passkey='{$GLOBALS['CURUSER']['passkey']}' WHERE id={$GLOBALS['CURUSER']['id']}");
+    @$GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("tb_users")." SET passkey='{$GLOBALS['CURUSER']['passkey']}' WHERE id={$GLOBALS['CURUSER']['id']}");
   }
 
 

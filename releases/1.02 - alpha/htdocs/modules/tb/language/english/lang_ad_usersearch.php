@@ -59,7 +59,7 @@ $GLOBALS['lang'] = array(
 'usersearch_instructions' =>"<table border='0' align='center'><tr><td class='embedded' bgcolor='#F5F4EA'><div align='left'>\n
 	Fields left blank will be ignored;\n
 	Wildcards * and ? may be used in Name, Email and Comments, as well as multiple values\n
-	separated by spaces (e.g. 'wyz Max*' in Name will list both ".$GLOBALS['xoopsDB']->prefix("users")." named\n
+	separated by spaces (e.g. 'wyz Max*' in Name will list both ".$GLOBALS['xoopsDB']->prefix("tb_users")." named\n
 	'wyz' and those whose names start by 'Max'. Similarly  '~' can be used for\n
 	negation, e.g. '~alfiest' in comments will restrict the search to users\n
 	that do not have 'alfiest' in their comments).<br /><br />\n
@@ -69,7 +69,7 @@ $GLOBALS['lang'] = array(
     Uploaded and Downloaded should be entered in GB.<br /><br />\n
 	For search parameters with multiple text fields the second will be\n
 	ignored unless relevant for the type of search chosen. <br /><br />\n
-	'Active only' restricts the search to ".$GLOBALS['xoopsDB']->prefix("users")." currently leeching or seeding,\n
+	'Active only' restricts the search to ".$GLOBALS['xoopsDB']->prefix("tb_users")." currently leeching or seeding,\n
 	'Disabled IPs' to those whose IPs also show up in disabled accounts.<br /><br />\n
 	The 'p' columns in the results show partial stats, that is, those\n
 	of the ".$GLOBALS['xoopsDB']->prefix("torrents")." in progress. <br /><br />\n

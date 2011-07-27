@@ -85,7 +85,7 @@ require_once "cache/rep_settings_cache.php";
 								FROM posts 
 								LEFT JOIN topics ON topicid = topics.id 
 								LEFT JOIN forums ON topics.forumid = forums.id 
-								LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("users")." ON posts.userid = users.id 
+								LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("tb_users")." ON posts.userid = users.id 
 								WHERE posts.id ={$input['pid']}" );
 
 		// does it or don't it?
@@ -203,7 +203,7 @@ require_once "cache/rep_settings_cache.php";
 			$score = fetch_reppower( $GLOBALS['CURUSER'], $input['reputation'] );
 			$res['reputation'] += $score;
 
-			@$GLOBALS['xoopsDB']->queryF( "UPDATE ".$GLOBALS['xoopsDB']->prefix("users")." set reputation=".intval($res['reputation']). " WHERE id=" .$res['userid'] );
+			@$GLOBALS['xoopsDB']->queryF( "UPDATE ".$GLOBALS['xoopsDB']->prefix("tb_users")." set reputation=".intval($res['reputation']). " WHERE id=" .$res['userid'] );
 
 			$save = array( 'reputation' => $score,
 						   'whoadded'   => $GLOBALS['CURUSER']['id'],
@@ -226,7 +226,7 @@ require_once "cache/rep_settings_cache.php";
 				// check for fish!
 				$query = $GLOBALS['xoopsDB']->queryF( "select r.*, leftby.id as leftby_id, leftby.username as leftby_name 
 										from ".$GLOBALS['xoopsDB']->prefix("reputation")." r 
-										left join ".$GLOBALS['xoopsDB']->prefix("users")." leftby on leftby.id=r.whoadded 
+										left join ".$GLOBALS['xoopsDB']->prefix("tb_users")." leftby on leftby.id=r.whoadded 
 										where postid={$input['pid']} 
 										order by dateadd DESC" );
 										

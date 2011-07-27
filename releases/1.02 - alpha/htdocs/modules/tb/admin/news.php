@@ -253,7 +253,7 @@ require_once "include/html_functions.php";
         $userid = $arr["userid"];
         $added = get_date( $arr['added'],'');
 
-        $res2 = @$GLOBALS['xoopsDB']->queryF("SELECT username, donor FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE id = $userid") or sqlerr(__FILE__, __LINE__);
+        $res2 = @$GLOBALS['xoopsDB']->queryF("SELECT username, donor FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE id = $userid") or sqlerr(__FILE__, __LINE__);
         $arr2 = $GLOBALS['xoopsDB']->fetchArray($res2);
 
         $postername = $arr2["username"];

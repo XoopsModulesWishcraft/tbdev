@@ -67,7 +67,7 @@ function dltable($name, $arr, $torrent)
 
                   // user/ip/port
                   // check if anyone has this ip
-                  //($unr = $GLOBALS['xoopsDB']->queryF("SELECT username, privacy FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE id=$e[userid] ORDER BY last_access DESC LIMIT 1")) or die;
+                  //($unr = $GLOBALS['xoopsDB']->queryF("SELECT username, privacy FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE id=$e[userid] ORDER BY last_access DESC LIMIT 1")) or die;
                   //$una = $GLOBALS['xoopsDB']->fetchArray($unr);
           if ($e["privacy"] == "strong") continue;
       $htmlout .= "<tr>\n";
@@ -119,7 +119,7 @@ function dltable($name, $arr, $torrent)
           $seeders = array();
           $subres = $GLOBALS['xoopsDB']->queryF("SELECT u.username, u.privacy, p.seeder, p.finishedat, p.downloadoffset, p.uploadoffset, p.ip, p.port, p.uploaded, p.downloaded, p.to_go, p.started AS st, p.connectable, p.agent, p.last_action AS la, p.userid, p.peer_id
     FROM ".$GLOBALS['xoopsDB']->prefix("peers")." p
-    LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("users")." u ON p.userid = u.id
+    LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("tb_users")." u ON p.userid = u.id
     WHERE p.torrent = $id") or sqlerr();
           
           if(mysql_num_rows($subres) == 0)

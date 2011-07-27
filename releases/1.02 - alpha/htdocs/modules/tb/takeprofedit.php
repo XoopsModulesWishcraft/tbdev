@@ -56,7 +56,7 @@ loggedinorreturn();
     {
       if (!validemail($email))
         stderr("Update failed!", $GLOBALS['lang']['takeprofedit_not_valid_email']);
-      $r = $GLOBALS['xoopsDB']->queryF("SELECT id FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE email=" . sqlesc($email)) or sqlerr();
+      $r = $GLOBALS['xoopsDB']->queryF("SELECT id FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE email=" . sqlesc($email)) or sqlerr();
       if ( mysql_num_rows($r) > 0 || ($GLOBALS['CURUSER']["passhash"] != make_passhash( $GLOBALS['CURUSER']['secret'], md5($chmailpass) ) ) )
         stderr("Update failed!", $GLOBALS['lang']['takeprofedit_address_taken']);
       $changedemail = 1;
@@ -183,7 +183,7 @@ loggedinorreturn();
       $urladd .= "&mailsent=1";
     }
 
-    @$GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("users")." SET " . implode(", ", $updateset) . " WHERE id = " . $GLOBALS['CURUSER']["id"]) or sqlerr(__FILE__,__LINE__);
+    @$GLOBALS['xoopsDB']->queryF("UPDATE ".$GLOBALS['xoopsDB']->prefix("tb_users")." SET " . implode(", ", $updateset) . " WHERE id = " . $GLOBALS['CURUSER']["id"]) or sqlerr(__FILE__,__LINE__);
 
     header("Location: {$GLOBALS['TBDEV']['baseurl']}/my.php?edited=1" . $urladd);
 

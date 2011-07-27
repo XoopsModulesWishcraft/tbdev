@@ -221,7 +221,7 @@ function _torrenttable($res, $frame_caption)
       $HTMLOUT = '';
       
       $HTMLOUT .= begin_main_frame();
-    //  $r = $GLOBALS['xoopsDB']->queryF("SELECT * FROM ".$GLOBALS['xoopsDB']->prefix("users")." ORDER BY donated DESC, username LIMIT 100") or die;
+    //  $r = $GLOBALS['xoopsDB']->queryF("SELECT * FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." ORDER BY donated DESC, username LIMIT 100") or die;
     //  donortable($r, "Top 10 Donors");
       $type = isset($_GET["type"]) ? 0 + $_GET["type"] : 0;
       if (!in_array($type,array(1,2,3)))
@@ -242,7 +242,7 @@ function _torrenttable($res, $frame_caption)
 
       if ($type == 1)
       {
-        $mainquery = "SELECT id as userid, username, added, uploaded, downloaded, uploaded / (".time()." - added) AS upspeed, downloaded / (".time()." - added) AS downspeed FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE enabled = 'yes'";
+        $mainquery = "SELECT id as userid, username, added, uploaded, downloaded, uploaded / (".time()." - added) AS upspeed, downloaded / (".time()." - added) AS downspeed FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE enabled = 'yes'";
 
         if (!$limit || $limit > 250)
           $limit = 10;
@@ -334,25 +334,25 @@ function _torrenttable($res, $frame_caption)
 
         if ($limit == 10 || $subtype == "us")
         {
-          $r = $GLOBALS['xoopsDB']->queryF("SELECT name, flagpic, COUNT(users.country) as num FROM ".$GLOBALS['xoopsDB']->prefix("countries")." LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("users")." ON users.country = countries.id GROUP BY name ORDER BY num DESC LIMIT $limit") or sqlerr();
+          $r = $GLOBALS['xoopsDB']->queryF("SELECT name, flagpic, COUNT(users.country) as num FROM ".$GLOBALS['xoopsDB']->prefix("countries")." LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("tb_users")." ON users.country = countries.id GROUP BY name ORDER BY num DESC LIMIT $limit") or sqlerr();
           $HTMLOUT .= countriestable($r, sprintf($GLOBALS['lang']['country_mostact'], $limit) . ($limit == 10 && $pu ? " <font class='small'> - [<a href='topten.php?type=3&amp;lim=25&amp;subtype=us'>{$GLOBALS['lang']['common_top25']}</a>]</font>" : ""),$GLOBALS['lang']['common_users']);
         }
 
         if ($limit == 10 || $subtype == "ul")
         {
-          $r = $GLOBALS['xoopsDB']->queryF("SELECT c.name, c.flagpic, sum(u.uploaded) AS ul FROM ".$GLOBALS['xoopsDB']->prefix("users")." AS u LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("countries")." AS c ON u.country = c.id WHERE u.enabled = 'yes' GROUP BY c.name ORDER BY ul DESC LIMIT $limit") or sqlerr();
+          $r = $GLOBALS['xoopsDB']->queryF("SELECT c.name, c.flagpic, sum(u.uploaded) AS ul FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." AS u LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("countries")." AS c ON u.country = c.id WHERE u.enabled = 'yes' GROUP BY c.name ORDER BY ul DESC LIMIT $limit") or sqlerr();
           $HTMLOUT .= countriestable($r, sprintf($GLOBALS['lang']['country_totalul'], $limit) . ($limit == 10 && $pu ? " <font class='small'> - [<a href='topten.php?type=3&amp;lim=25&amp;subtype=ul'>{$GLOBALS['lang']['common_top25']}</a>]</font>" : ""),$GLOBALS['lang']['common_ul']);
         }
 
         if ($limit == 10 || $subtype == "avg")
         {
-          $r = $GLOBALS['xoopsDB']->queryF("SELECT c.name, c.flagpic, sum(u.uploaded)/count(u.id) AS ul_avg FROM ".$GLOBALS['xoopsDB']->prefix("users")." AS u LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("countries")." AS c ON u.country = c.id WHERE u.enabled = 'yes' GROUP BY c.name HAVING sum(u.uploaded) > 1099511627776 AND count(u.id) >= 100 ORDER BY ul_avg DESC LIMIT $limit") or sqlerr();
+          $r = $GLOBALS['xoopsDB']->queryF("SELECT c.name, c.flagpic, sum(u.uploaded)/count(u.id) AS ul_avg FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." AS u LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("countries")." AS c ON u.country = c.id WHERE u.enabled = 'yes' GROUP BY c.name HAVING sum(u.uploaded) > 1099511627776 AND count(u.id) >= 100 ORDER BY ul_avg DESC LIMIT $limit") or sqlerr();
           $HTMLOUT .= countriestable($r, sprintf($GLOBALS['lang']['country_avperuser'], $limit) . ($limit == 10 && $pu ? " <font class='small'> - [<a href='topten.php?type=3&amp;lim=25&amp;subtype=avg'>{$GLOBALS['lang']['common_top25']}</a>]</font>" : ""),$GLOBALS['lang']['country_avg']);
         }
 
         if ($limit == 10 || $subtype == "r")
         {
-          $r = $GLOBALS['xoopsDB']->queryF("SELECT c.name, c.flagpic, sum(u.uploaded)/sum(u.downloaded) AS r FROM ".$GLOBALS['xoopsDB']->prefix("users")." AS u LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("countries")." AS c ON u.country = c.id WHERE u.enabled = 'yes' GROUP BY c.name HAVING sum(u.uploaded) > 1099511627776 AND sum(u.downloaded) > 1099511627776 AND count(u.id) >= 100 ORDER BY r DESC LIMIT $limit") or sqlerr();
+          $r = $GLOBALS['xoopsDB']->queryF("SELECT c.name, c.flagpic, sum(u.uploaded)/sum(u.downloaded) AS r FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." AS u LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("countries")." AS c ON u.country = c.id WHERE u.enabled = 'yes' GROUP BY c.name HAVING sum(u.uploaded) > 1099511627776 AND sum(u.downloaded) > 1099511627776 AND count(u.id) >= 100 ORDER BY r DESC LIMIT $limit") or sqlerr();
           $HTMLOUT .= countriestable($r, sprintf($GLOBALS['lang']['country_ratio'], $limit) . ($limit == 10 && $pu ? " <font class='small'> - [<a href='topten.php?type=3&amp;lim=25&amp;subtype=r'>{$GLOBALS['lang']['common_top25']}</a>]</font>" : ""),$GLOBALS['lang']['common_ratio']);
         }
       }
@@ -364,22 +364,22 @@ function _torrenttable($res, $frame_caption)
 
           if ($limit == 10 || $subtype == "ul")
           {
-    //				$r = $GLOBALS['xoopsDB']->queryF("SELECT users.id AS userid, peers.id AS peerid, username, peers.uploaded, peers.downloaded, peers.uploaded / (UNIX_TIMESTAMP(NOW()) - (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(last_action)) - UNIX_TIMESTAMP(started)) AS uprate, peers.downloaded / (UNIX_TIMESTAMP(NOW()) - (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(last_action)) - UNIX_TIMESTAMP(started)) AS downrate FROM ".$GLOBALS['xoopsDB']->prefix("peers")." LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("users")." ON peers.userid = users.id ORDER BY uprate DESC LIMIT $limit") or sqlerr();
+    //				$r = $GLOBALS['xoopsDB']->queryF("SELECT users.id AS userid, peers.id AS peerid, username, peers.uploaded, peers.downloaded, peers.uploaded / (UNIX_TIMESTAMP(NOW()) - (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(last_action)) - UNIX_TIMESTAMP(started)) AS uprate, peers.downloaded / (UNIX_TIMESTAMP(NOW()) - (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(last_action)) - UNIX_TIMESTAMP(started)) AS downrate FROM ".$GLOBALS['xoopsDB']->prefix("peers")." LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("tb_users")." ON peers.userid = users.id ORDER BY uprate DESC LIMIT $limit") or sqlerr();
     //				peerstable($r, "Top $limit Fastest Uploaders" . ($limit == 10 && $pu ? " <font class='small'> - [<a href='topten.php?type=4&amp;lim=100&amp;subtype=ul'>Top 100</a>] - [<a href='topten.php?type=4&amp;lim=250&amp;subtype=ul'>Top 250</a>]</font>" : ""));
 
-    //				$r = $GLOBALS['xoopsDB']->queryF("SELECT users.id AS userid, peers.id AS peerid, username, peers.uploaded, peers.downloaded, (peers.uploaded - peers.uploadoffset) / (UNIX_TIMESTAMP(last_action) - UNIX_TIMESTAMP(started)) AS uprate, (peers.downloaded - peers.downloadoffset) / (UNIX_TIMESTAMP(last_action) - UNIX_TIMESTAMP(started)) AS downrate FROM ".$GLOBALS['xoopsDB']->prefix("peers")." LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("users")." ON peers.userid = users.id ORDER BY uprate DESC LIMIT $limit") or sqlerr();
+    //				$r = $GLOBALS['xoopsDB']->queryF("SELECT users.id AS userid, peers.id AS peerid, username, peers.uploaded, peers.downloaded, (peers.uploaded - peers.uploadoffset) / (UNIX_TIMESTAMP(last_action) - UNIX_TIMESTAMP(started)) AS uprate, (peers.downloaded - peers.downloadoffset) / (UNIX_TIMESTAMP(last_action) - UNIX_TIMESTAMP(started)) AS downrate FROM ".$GLOBALS['xoopsDB']->prefix("peers")." LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("tb_users")." ON peers.userid = users.id ORDER BY uprate DESC LIMIT $limit") or sqlerr();
     //				peerstable($r, "Top $limit Fastest Uploaders (timeout corrected)" . ($limit == 10 && $pu ? " <font class='small'> - [<a href='topten.php?type=4&amp;lim=100&amp;subtype=ul'>Top 100</a>] - [<a href='topten.php?type=4&amp;lim=250&amp;subtype=ul'>Top 250</a>]</font>" : ""));
 
-            $r = $GLOBALS['xoopsDB']->queryF( "SELECT users.id AS userid, username, (peers.uploaded - peers.uploadoffset) / (last_action - started) AS uprate, IF(seeder = 'yes',(peers.downloaded - peers.downloadoffset)  / (finishedat - started),(peers.downloaded - peers.downloadoffset) / (last_action - started)) AS downrate FROM ".$GLOBALS['xoopsDB']->prefix("peers")." LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("users")." ON peers.userid = users.id ORDER BY uprate DESC LIMIT $limit") or sqlerr();
+            $r = $GLOBALS['xoopsDB']->queryF( "SELECT users.id AS userid, username, (peers.uploaded - peers.uploadoffset) / (last_action - started) AS uprate, IF(seeder = 'yes',(peers.downloaded - peers.downloadoffset)  / (finishedat - started),(peers.downloaded - peers.downloadoffset) / (last_action - started)) AS downrate FROM ".$GLOBALS['xoopsDB']->prefix("peers")." LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("tb_users")." ON peers.userid = users.id ORDER BY uprate DESC LIMIT $limit") or sqlerr();
             $HTMLOUT .= peerstable($r, sprintf($GLOBALS['lang']['peers_fastestup'], $limit) . ($limit == 10 && $pu ? " <font class='small'> - [<a href='topten.php?type=4&amp;lim=100&amp;subtype=ul'>{$GLOBALS['lang']['common_top100']}</a>] - [<a href='topten.php?type=4&amp;lim=250&amp;subtype=ul'>{$GLOBALS['lang']['common_top250']}</a>]</font>" : ""));
           }
 
           if ($limit == 10 || $subtype == "dl")
           {
-    //				$r = $GLOBALS['xoopsDB']->queryF("SELECT users.id AS userid, peers.id AS peerid, username, peers.uploaded, peers.downloaded, (peers.uploaded - peers.uploadoffset) / (UNIX_TIMESTAMP(last_action) - UNIX_TIMESTAMP(started)) AS uprate, (peers.downloaded - peers.downloadoffset) / (UNIX_TIMESTAMP(last_action) - UNIX_TIMESTAMP(started)) AS downrate FROM ".$GLOBALS['xoopsDB']->prefix("peers")." LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("users")." ON peers.userid = users.id ORDER BY downrate DESC LIMIT $limit") or sqlerr();
+    //				$r = $GLOBALS['xoopsDB']->queryF("SELECT users.id AS userid, peers.id AS peerid, username, peers.uploaded, peers.downloaded, (peers.uploaded - peers.uploadoffset) / (UNIX_TIMESTAMP(last_action) - UNIX_TIMESTAMP(started)) AS uprate, (peers.downloaded - peers.downloadoffset) / (UNIX_TIMESTAMP(last_action) - UNIX_TIMESTAMP(started)) AS downrate FROM ".$GLOBALS['xoopsDB']->prefix("peers")." LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("tb_users")." ON peers.userid = users.id ORDER BY downrate DESC LIMIT $limit") or sqlerr();
     //				peerstable($r, "Top $limit Fastest Downloaders (timeout corrected)" . ($limit == 10 && $pu ? " <font class='small'> - [<a href='topten.php?type=4&amp;lim=100&amp;subtype=dl'>Top 100</a>] - [<a href='topten.php?type=4&amp;lim=250&amp;subtype=dl'>Top 250</a>]</font>" : ""));
 
-            $r = $GLOBALS['xoopsDB']->queryF("SELECT users.id AS userid, peers.id AS peerid, username, peers.uploaded, peers.downloaded,(peers.uploaded - peers.uploadoffset) / (last_action - started) AS uprate, IF(seeder = 'yes',(peers.downloaded - peers.downloadoffset)  / (finishedat - started),(peers.downloaded - peers.downloadoffset) / (last_action - started)) AS downrate FROM ".$GLOBALS['xoopsDB']->prefix("peers")." LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("users")." ON peers.userid = users.id ORDER BY downrate DESC LIMIT $limit") or sqlerr();
+            $r = $GLOBALS['xoopsDB']->queryF("SELECT users.id AS userid, peers.id AS peerid, username, peers.uploaded, peers.downloaded,(peers.uploaded - peers.uploadoffset) / (last_action - started) AS uprate, IF(seeder = 'yes',(peers.downloaded - peers.downloadoffset)  / (finishedat - started),(peers.downloaded - peers.downloadoffset) / (last_action - started)) AS downrate FROM ".$GLOBALS['xoopsDB']->prefix("peers")." LEFT JOIN ".$GLOBALS['xoopsDB']->prefix("tb_users")." ON peers.userid = users.id ORDER BY downrate DESC LIMIT $limit") or sqlerr();
             $HTMLOUT .= peerstable($r, sprintf($GLOBALS['lang']['peers_fastestdown'], $limit) . ($limit == 10 && $pu ? " <font class='small'> - [<a href='topten.php?type=4&amp;lim=100&amp;subtype=dl'>{$GLOBALS['lang']['common_top100']}</a>] - [<a href='topten.php?type=4&amp;lim=250&amp;subtype=dl'>{$GLOBALS['lang']['common_top250']}</a>]</font>" : ""));
           }
       }

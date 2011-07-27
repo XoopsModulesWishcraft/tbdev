@@ -20,7 +20,7 @@ $GLOBALS['lang'] = array(
 
 #disclaimer
 'foot_disclaimer' 			=> "Disclaimer: None of the ".$GLOBALS['xoopsDB']->prefix("files")." shown here are actually hosted on this server. The links are provided solely by this site's users.
-The administrator of this site (%s) cannot be held responsible for what its ".$GLOBALS['xoopsDB']->prefix("users")." post, or any other actions of its users.
+The administrator of this site (%s) cannot be held responsible for what its ".$GLOBALS['xoopsDB']->prefix("tb_users")." post, or any other actions of its users.
 You may not use this site to distribute or download any material when you do not have the legal rights to do so.
 It is your own responsibility to adhere to these terms."
 

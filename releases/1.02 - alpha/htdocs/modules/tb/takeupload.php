@@ -250,7 +250,7 @@ loggedinorreturn();
     $res = $GLOBALS['xoopsDB']->queryF("SELECT name FROM ".$GLOBALS['xoopsDB']->prefix("categories")." WHERE id=$catid") or sqlerr();
     $arr = $GLOBALS['xoopsDB']->fetchArray($res);
     $cat = $arr["name"];
-    $res = $GLOBALS['xoopsDB']->queryF("SELECT email FROM ".$GLOBALS['xoopsDB']->prefix("users")." WHERE enabled='yes' AND notifs LIKE '%[cat$catid]%'") or sqlerr();
+    $res = $GLOBALS['xoopsDB']->queryF("SELECT email FROM ".$GLOBALS['xoopsDB']->prefix("tb_users")." WHERE enabled='yes' AND notifs LIKE '%[cat$catid]%'") or sqlerr();
     $uploader = $GLOBALS['CURUSER']['username'];
 
     $size = mksize($totallen);

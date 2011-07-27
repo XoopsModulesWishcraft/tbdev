@@ -1,23 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 3.2.0.1
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Jan 06, 2010 at 09:51 PM
--- Server version: 5.1.37
--- PHP Version: 5.3.0
-
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-
---
--- Database: `tb`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `avps`
---
 
 CREATE TABLE `avps` (
   `arg` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
@@ -25,7 +5,7 @@ CREATE TABLE `avps` (
   `value_i` int(11) NOT NULL DEFAULT '0',
   `value_u` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`arg`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 INSERT INTO `avps` VALUES 
@@ -34,11 +14,6 @@ INSERT INTO `avps` VALUES
 ('leechers', '', 0, 0),
 ('loadlimit', '12.5-1246045258', 0, 0);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `bans`
---
 
 CREATE TABLE `bans` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -49,13 +24,7 @@ CREATE TABLE `bans` (
   `last` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `first_last` (`first`,`last`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `categories`
---
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `categories` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -63,8 +32,7 @@ CREATE TABLE `categories` (
   `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `cat_desc` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'No Description',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `categories` VALUES (1, 'Appz/PC ISO', 'cat_apps.gif', 'No Description');
 INSERT INTO `categories` VALUES (2, 'Games/PC ISO', 'cat_games.gif', 'No Description');
@@ -80,19 +48,13 @@ INSERT INTO `categories` VALUES (11, 'Movies/DVD-R', 'cat_movies.gif', 'No Descr
 INSERT INTO `categories` VALUES (12, 'Games/PC Rips', 'cat_games.gif', 'No Description');
 INSERT INTO `categories` VALUES (13, 'Appz/misc', 'cat_apps.gif', 'No Description');
 
-----------------------------------------
-
---
--- Table structure for table `countries`
---
 
 CREATE TABLE `countries` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `flagpic` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `countries` VALUES (1, 'Sweden', 'sweden.gif');
 INSERT INTO `countries` VALUES (2, 'United States of America', 'usa.gif');
@@ -195,12 +157,6 @@ INSERT INTO `countries` VALUES (98, 'Costa Rica', 'costarica.gif');
 INSERT INTO `countries` VALUES (99, 'Egypt', 'egypt.gif');
 INSERT INTO `countries` VALUES (100, 'Bulgaria', 'bulgaria.gif');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `files`
---
-
 CREATE TABLE `files` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `torrent` int(10) unsigned NOT NULL DEFAULT '0',
@@ -209,13 +165,7 @@ CREATE TABLE `files` (
   PRIMARY KEY (`id`),
   KEY `torrent` (`torrent`),
   FULLTEXT KEY `filename` (`filename`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `friends`
---
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `friends` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -223,13 +173,8 @@ CREATE TABLE `friends` (
   `friendid` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `userfriend` (`userid`,`friendid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `news`
---
 
 CREATE TABLE `news` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -239,13 +184,7 @@ CREATE TABLE `news` (
   `headline` varchar(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'TBDEV.NET News',
   PRIMARY KEY (`id`),
   KEY `added` (`added`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `peers`
---
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `peers` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -275,13 +214,7 @@ CREATE TABLE `peers` (
   KEY `userid` (`userid`),
   KEY `passkey` (`passkey`),
   KEY `torrent_connect` (`torrent`,`connectable`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `reputation`
---
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `reputation` (
   `reputationid` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -296,13 +229,7 @@ CREATE TABLE `reputation` (
   KEY `whoadded` (`whoadded`),
   KEY `multi` (`postid`,`userid`),
   KEY `dateadd` (`dateadd`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `reputationlevel`
---
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `reputationlevel` (
   `reputationlevelid` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -310,8 +237,7 @@ CREATE TABLE `reputationlevel` (
   `level` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`reputationlevelid`),
   KEY `reputationlevel` (`minimumreputation`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `reputationlevel` VALUES (1, -999999, 'is infamous around these parts');
 INSERT INTO `reputationlevel` VALUES (2, -50, 'can only hope to improve');
@@ -329,29 +255,18 @@ INSERT INTO `reputationlevel` VALUES (13, 1000, 'has much to be proud of');
 INSERT INTO `reputationlevel` VALUES (14, 1500, 'has a brilliant future');
 INSERT INTO `reputationlevel` VALUES (15, 2000, 'has a reputation beyond repute');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `searchcloud`
---
-
 CREATE TABLE `searchcloud` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `searchedfor` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `howmuch` int(10) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `searchedfor` (`searchedfor`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `searchcloud` VALUES (1, 'bob', 1);
 INSERT INTO `searchcloud` VALUES (2, 'testing', 4);
 INSERT INTO `searchcloud` VALUES (3, 'blackadder', 1);
 INSERT INTO `searchcloud` VALUES (4, '24', 2);
--- --------------------------------------------------------
-
---
--- Table structure for table `sitelog`
---
 
 CREATE TABLE `sitelog` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -359,29 +274,17 @@ CREATE TABLE `sitelog` (
   `txt` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `added` (`added`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `stylesheets`
---
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `stylesheets` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `uri` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `stylesheets` VALUES (1, '1.css', '(default)');
 INSERT INTO `stylesheets` VALUES (2, '2.css', 'Large text');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `torrents`
---
 
 CREATE TABLE `torrents` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -417,15 +320,9 @@ CREATE TABLE `torrents` (
   KEY `visible` (`visible`),
   KEY `category_visible` (`category`,`visible`),
   FULLTEXT KEY `ft_search` (`search_text`,`ori_descr`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
+CREATE TABLE `tb_users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `uid` int(13) unsigned DEFAULT '0',
   `username` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
@@ -478,4 +375,4 @@ CREATE TABLE `users` (
   KEY `enabled` (`enabled`),
   KEY `warned` (`warned`),
   KEY `pkey` (`passkey`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

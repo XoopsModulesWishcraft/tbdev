@@ -8,7 +8,7 @@ $GLOBALS['lang'] = array(
 
 'sendmessage_template1_sub' => "Ratio warning",
 'sendmessage_template1_body' => "Hi,\n
-You may have noticed, if you have visited the forum, that %s is disabling the accounts of all ".$GLOBALS['xoopsDB']->prefix("users")." with low share ratios.\n
+You may have noticed, if you have visited the forum, that %s is disabling the accounts of all ".$GLOBALS['xoopsDB']->prefix("tb_users")." with low share ratios.\n
 I am sorry to say that your ratio is a little too low to be acceptable.\n
 If you would like your account to remain open, you must ensure that your ratio increases dramatically in the next day or two, to get as close to 1.0 as possible.\n
 I am sure that you will appreciate the importance of sharing your downloads.
@@ -20,12 +20,12 @@ Thank you for your cooperation.",
 You may not be aware that there are new guidelines on avatar sizes in the [url=%s/rules.php]rules[/url], in particular \"Resize
 your images to a width of 150 px and a size of [b]no more than 150 KB[/b].\"\n
 I'm sorry to say your avatar doesn't conform to them. Please change it as soon as possible.\n
-We understand this may be an inconvenience to some ".$GLOBALS['xoopsDB']->prefix("users")." but feel it is in the community's best interest.\n
+We understand this may be an inconvenience to some ".$GLOBALS['xoopsDB']->prefix("tb_users")." but feel it is in the community's best interest.\n
 Thanks for the cooperation.",
 
 'sendmessage_mm_template1_sub' => "Ratio warning",
 'sendmessage_mm_template1_body' => "Hi,\n
-You may have noticed, if you have visited the forum, that %s is disabling the accounts of all ".$GLOBALS['xoopsDB']->prefix("users")." with low share ratios.\n
+You may have noticed, if you have visited the forum, that %s is disabling the accounts of all ".$GLOBALS['xoopsDB']->prefix("tb_users")." with low share ratios.\n
 I am sorry to say that your ratio is a little too low to be acceptable.\n
 If you would like your account to remain open, you must ensure that your ratio increases dramatically in the next day or two, to get as close to 1.0 as possible.\n
 I am sure that you will appreciate the importance of sharing your downloads.
