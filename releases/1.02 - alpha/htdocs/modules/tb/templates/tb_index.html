@@ -1,0 +1,26 @@
+<div style='text-align:left;width:80%;border:1px solid blue;padding:5px;'>
+<div style='background:lightgrey;height:25px;'><span style='font-weight:bold;font-size:12pt;'><{$smarty.const._TBDEV_LANG_NEWS_TITLE}></span><{$adminbutton}></div><br />
+<{foreach item=article from=$news}>
+	<div style='background:lightgrey;height:20px;'><span style='font-weight:bold;font-size:10pt;'><{$article.headline}></span></div>
+    <span style='color:grey;font-weight:bold;text-decoration:underline;'><{$article.added}></span><{$article.button}>
+    <div style='margin-top:10px;padding:5px;'><{$article.body}></div><hr />
+<{/foreach}>        
+</div><br />
+<div style='text-align:left;width:80%;border:1px solid blue;padding:5px;'>
+    <div style='background:lightgrey;height:25px;'><span style='font-weight:bold;font-size:12pt;'><{$smarty.const._TBDEV_LANG_STATS_TITLE}></span></div><br />
+    <table align='center' class='main' border='1' cellspacing='0' cellpadding='5'>
+    	<tr>
+	    	<td class='rowhead'><{$smarty.const._TBDEV_LANG_STATS_REGUSERS}></td><td align='right'><{$registered}></td>
+      	</tr>
+	    <!-- <tr><td class='rowhead'><{$smarty.const._TBDEV_LANG_STATS_UNVERIFIED}></td><td align=right><{$unverified}></td></tr> -->
+	    <tr>
+	      	<td class='rowhead'><{$smarty.const._TBDEV_LANG_STATS_TORRENTS}></td><td align='right'><{$torrents}></td>
+	    </tr>      
+	    <{ if ($peers<>0) }> 
+	    <tr><td class='rowhead'><{$smarty.const._TBDEV_LANG_STATS_PEERS}></td><td align='right'><{$peers}></td></tr>
+	    <tr><td class='rowhead'><{$smarty.const._TBDEV_LANG_STATS_SEED}></td><td align='right'><{$seeders}></td></tr>
+	    <tr><td class='rowhead'><{$smarty.const._TBDEV_LANG_STATS_LEECH}></td><td align='right'><{$leechers}></td></tr>
+	    <tr><td class='rowhead'><{$smarty.const._TBDEV_LANG_STATS_SL_RATIO}></td><td align='right'><{$ratio}></td></tr>";
+	    <{/if}>
+	</table>
+</div>

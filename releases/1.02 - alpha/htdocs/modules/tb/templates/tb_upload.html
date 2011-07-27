@@ -1,0 +1,32 @@
+<div align='center'>
+	<form enctype='multipart/form-data' action='takeupload.php' method='post'>
+	    <input type='hidden' name='MAX_FILE_SIZE' value='<{$xoConfig.max_torrent_size}>' />
+	    <p>{<{$smarty.const._TBDEV_LANG_UPLOAD_ANNOUNCE_URL}>} <b><{$xoConfig.announce_urls.0}></b></p>";
+		<table border='1' cellspacing='0' cellpadding='10'>
+		    <tr>
+		      <td class='heading' valign='top' align='right'><{$smarty.const._TBDEV_LANG_UPLOAD_TORRENT}></td>
+		      <td valign='top' align='left'><input type='file' name='file' size='80' /></td>
+		    </tr>
+		    <tr>
+		      <td class='heading' valign='top' align='right'><{$smarty.const._TBDEV_LANG_UPLOAD_NAME}></td>
+		      <td valign='top' align='left'><input type='text' name='name' size='80' /><br />(<{$smarty.const._TBDEV_LANG_UPLOAD_FILENAME}>)</td>
+		    </tr>
+		    <tr>
+		      <td class='heading' valign='top' align='right'><{$smarty.const._TBDEV_LANG_UPLOAD_NFO}></td>
+		      <td valign='top' align='left'><input type='file' name='nfo' size='80' /><br />(<{$smarty.const._TBDEV_LANG_UPLOAD_NFO_INFO}>)</td>
+		    </tr>
+		    <tr>
+		      <td class='heading' valign='top' align='right'><{$smarty.const._TBDEV_LANG_UPLOAD_DESCRIPTION}></td>
+		      <td valign='top' align='left'><textarea name='descr' rows='10' cols='80'></textarea>
+		      <br />(<{$smarty.const._TBDEV_LANG_UPLOAD_HTML_BBCODE}>)</td>
+		    </tr>
+			    <tr>
+			        <td class='heading' valign='top' align='right'>{$GLOBALS['lang']['upload_type']}</td>
+			        <td valign='top' align='left'><select name='type'><option value='0'>(<{$smarty.const._TBDEV_LANG_UPLOAD_CHOOSE_ONE}>)</option><{foreach item=row from=$cats}><option value='<{$row.id}>'><{$row.name}></option><{/foreach}></select></td>
+			    </tr>
+			    <tr>
+			    	<td align='center' colspan='2'><input type='submit' class='btn' value='{$GLOBALS['lang']['upload_submit']}' /></td>
+			    </tr>
+		</table>
+	</form>
+</div>
