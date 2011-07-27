@@ -17,7 +17,7 @@
 +------------------------------------------------
 */
 ob_start("ob_gzhandler");
-
+require_once '../../mainfile.php';
 require_once "include/bittorrent.php";
 require_once "include/user_functions.php";
 

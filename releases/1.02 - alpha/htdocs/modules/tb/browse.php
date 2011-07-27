@@ -213,7 +213,10 @@ loggedinorreturn();
 	$GLOBALS['xoopsTpl']->assign('wherecatina', $wherecatina);
 
     require_once "include/searchcloud_functions.php";
-
+    
+    $GLOBALS['xoopsTpl']->assign('lastrowcols', count($cats)%$GLOBALS['xoopsModuleConfig']['catsperrow']);
+	$GLOBALS['xoopsTpl']->assign('npos', $GLOBALS['xoopsModuleConfig']['catsperrow']-(count($cats)%$GLOBALS['xoopsModuleConfig']['catsperrow']));
+	$GLOBALS['xoopsTpl']->assign('rowspan', $GLOBALS['xoopsModuleConfig']['catsperrow']-(count($cats)%$GLOBALS['xoopsModuleConfig']['catsperrow'])-1);
 	$GLOBALS['xoopsTpl']->assign('cloud', cloud());
 	$GLOBALS['xoopsTpl']->assign('cats', $cats);
     $GLOBALS['xoopsTpl']->assign('torrenttable', torrenttable($res));

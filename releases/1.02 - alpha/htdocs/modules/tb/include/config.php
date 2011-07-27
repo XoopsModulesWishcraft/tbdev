@@ -27,6 +27,8 @@ define('SQL_DEBUG', 2);
 
 define('TIME_NOW', time());
 
+include_once(dirname(dirname(dirname(dirname(__FILE__)))).'/mainfile.php');
+
 $module_handler = xoops_gethandler('module');
 $config_handler = xoops_gethandler('config');
 $xomod = $module_handler->getByDirname('tb');

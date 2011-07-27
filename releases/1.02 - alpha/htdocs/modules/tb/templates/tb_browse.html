@@ -18,10 +18,8 @@
 		<{/foreach}>
 		<{assign var="ncats" value=count($cats)}>;
 		<{assign var="nrows" value=ceil($ncats/$xoConfig.catsperrow)}>;
-		<{assign var="lastrowcols" value=$ncats % $catsperrow}>;
 		<{if $lastrowcols != 0}>
-		 	<{if ($catsperrow - $lastrowcols != 1)}>
-		 		<{assign var="rowspan" value=$catsperrow  - $lastrowcols - 1}>
+		 	<{if $nopos not eq 1 }>
 		        <td class='bottom' rowspan='<{$rowspan}>'>&nbsp;</td>
 		    <{/if}>
 		    <td class='bottom' style="padding-left: 5px"><div align='left'>(<a href='browse.php?all=1'><b><{$smarty.const._TBDEV_LANG_BROWSE_SHOW_ALL}></b></a>)</div></td>
