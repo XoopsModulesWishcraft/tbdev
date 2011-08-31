@@ -1,0 +1,43 @@
+<form method='post' action='takeedit.php' enctype='multipart/form-data'>
+    <input type='hidden' name='id' value='<{$id}>' />";
+    <{if isset($smarty.get.returnto)}>
+      <input type='hidden' name='returnto' value='<{$smarty.get.returnto}>' />
+    <{/if}>
+    <table border='1' cellspacing='0' cellpadding='10'>
+    <{$tr_torrent_name}>
+    <{$tr_nfo}>
+    <{$tr_description}>
+    <{$tr_type}>
+    <{$tr_visible}>
+    <{$tr_banned}>
+    <tr><td colspan='2' align='center'><input type='submit' value='<{$smarty.const._TBDEV_LANG_EDIT_SUBMIT}>' class='btn' /> <input type='reset' value='<{$smarty.const._TBDEV_LANG_EDIT_REVERT}>' class='btn' /></td></tr>
+    </table>
+</form>
+<br />
+<form method='post' action='delete.php'>
+    <table border='1' cellspacing='0' cellpadding='5'>
+    <tr>
+      <td class='embedded' style='background-color: #F5F4EA;padding-bottom: 5px' colspan='2'><b><{$smarty.const._TBDEV_LANG_EDIT_DELETE_TORRENT}>.</b> <{$smarty.const._TBDEV_LANG_EDIT_REASON}></td>
+    </tr>
+    <tr>
+      <td><input name='reasontype' type='radio' value='1' />&nbsp;<{$smarty.const._TBDEV_LANG_EDIT_DEAD}> </td><td> <{$smarty.const._TBDEV_LANG_EDIT_PEERS}></td>
+    </tr>
+    <tr>
+      <td><input name='reasontype' type='radio' value='2' />&nbsp;<{$smarty.const._TBDEV_LANG_EDIT_DUPE}></td><td><input type='text' size='40' name='reason[]' /></td>
+    </tr>
+    <tr>
+      <td><input name='reasontype' type='radio' value='3' />&nbsp;<{$smarty.const._TBDEV_LANG_EDIT_NUKED}></td><td><input type='text' size='40' name='reason[]' /></td>
+    </tr>
+    <tr>
+      <td><input name='reasontype' type='radio' value='4' />&nbsp;<{$smarty.const._TBDEV_LANG_EDIT_RULES}></td><td><input type='text' size='40' name='reason[]' />(<{$smarty.const._TBDEV_LANG_EDIT_REQ}>)</td>
+    </tr>
+    <tr>
+      <td><input name='reasontype' type='radio' value='5' checked='checked' />&nbsp;<{$smarty.const._TBDEV_LANG_EDIT_OTHER}></td><td><input type='text' size='40' name='reason[]' />(<{$smarty.const._TBDEV_LANG_EDIT_REQ}>)<input type='hidden' name='id' value='<{$id}>' /></td>
+    </tr>
+    <{if isset($smarty.get.returnto)}>
+      <input type='hidden' name='returnto' value='<{$smarty.get.returnto}>' />
+    <{/if}>
+    <tr><td colspan='2' align='center'><input type='submit' value='<{$smarty.const._TBDEV_LANG_EDIT_DELETE}>' class='btn' /></td>
+    </tr>
+    </table>
+</form>
