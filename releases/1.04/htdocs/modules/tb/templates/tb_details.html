@@ -1,0 +1,58 @@
+<{if isset($smarty.get.uploaded) }>
+	<h2><{$smarty.const._TBDEV_LANG_DETAILS_SUCCESSFUL}></h2>
+	<p><{$smarty.const._TBDEV_LANG_DETAILS_START_SEEDING}></p>
+<{elseif isset($smarty.get.edited) }>		
+	<h2><{$smarty.const._TBDEV_LANG_DETAILS_SUCCESS_EDIT}></h2>;
+	<{if isset($smarty.get.returnto) }>
+	<p><b><{$smarty.const._TBDEV_LANG_DETAILS_GO_BACK}><a href='<{$smarty.get.returnto}>'><{$smarty.const._TBDEV_LANG_DETAILS_WHENCE}></a>.</b></p>
+	<{/if}>
+<{elseif (isset($smarty.get.rated))}>
+	<h2><{$smarty.const._TBDEV_LANG_DETAILS_RATING_ADDED}></h2>
+<{/if}>
+<h1><{$row.name}></h1>
+<table width='750' border="1" cellspacing="0" cellpadding="5">
+<{$name}>
+<tr><td class='rowhead' width='1%'><{$smarty.const._TBDEV_LANG_DETAILS_DOWNLOAD}></td><td width='99%' align='left'><a class='index' href='download.php?torrent=<{$row.id}>'><{$row.filename}></a></td></tr>
+<{if $info_hash}>
+<tr><td class='rowhead' width='1%'><{$smarty.const._TBDEV_LANG_DETAILS_INFO_HASH}></td><td width='99%' align='left'><{$info_hash}></td></tr>
+<{/if}>
+<{if !empty($row.descr)}>
+<tr><td style='vertical-align:top'><{$smarty.const._TBDEV_LANG_DETAILS_DESCRIPTION}></td><td><div style='background-color:#d9e2ff;width:100%;height:150px;overflow: auto'><{$row.descr}></div></td></tr>
+<{/if}>			
+    <{if (get_user_class() >= UC_POWER_USER && $row.nfosz > 0)}>
+    <tr><td class='rowhead'><{$smarty.const._TBDEV_LANG_DETAILS_NFO}></td><td align='left'><a href='viewnfo.php?id=<{$row.id}>'><b><{$smarty.const._TBDEV_LANG_DETAILS_VIEW_NFO}></b></a> (<{$mksize_row_nfo}>)</td></tr>
+    <{/if}>  
+<{if ($row.visible == "no")}>
+<{$tr_visible}>
+<{/if}>
+<{if ($moderator) }>
+<{$tr_banned}>
+<{/if}>
+<{$tr_cat}>
+<{$tr_lastseed}>
+<{$tr_size}>
+<{$tr_added}>
+<{$tr_views}>
+<{$tr_hits}>
+<{$tr_snatched}>
+<{$tr_upped}>
+<{$tr_files}>
+<{$tr_peers}>
+</table>
+<{if $xoConfig.tagbar}><{include file="db:tag_bar.html"}><{/if}>
+<br /><br /><br />
+<div style="text-align: center; padding: 3px; margin: 3px;">
+  <{$commentsnav}>
+  <{$lang_notice}>
+</div> 
+<div style="margin: 3px; padding: 3px;">
+<!-- start comments loop -->
+<{if $comment_mode == "flat"}>
+  <{include file="db:system_comments_flat.html"}>
+<{elseif $comment_mode == "thread"}>
+  <{include file="db:system_comments_thread.html"}>
+<{elseif $comment_mode == "nest"}>
+  <{include file="db:system_comments_nest.html"}>
+<{/if}>
+<!-- end comments loop -->
+</div>

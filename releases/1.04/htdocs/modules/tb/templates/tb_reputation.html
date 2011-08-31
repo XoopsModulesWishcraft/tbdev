@@ -1,0 +1,13 @@
+<{if $msg && empty($html) }>
+<tr><td class='row2'><{$msg}></td></tr>
+<{else}>
+<div class='borderwrap'>
+	<div class='maintitle'>Reputation System</div>
+	<table class='main' cellspacing='1'>
+		$html
+		<{if  $closewindow }>
+		<tr><td class='darkrow1' align='center'><a href='javascript:self.close();'><b><{$smarty.const._TBDEV_LANG_INFO_CLOSE_REP}></b></a></td></tr>
+		<{/if}>
+	</table>
+</div>
+<{/if}>
