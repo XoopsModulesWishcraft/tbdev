@@ -120,7 +120,7 @@ loggedinorreturn();
 
     if (isset($cleansearchstr))
     {
-      $wherea[] = "MATCH (search_text, ori_descr) AGAINST (" . sqlesc($searchstr) . ")";
+      $wherea[] = " `search_text` LIKE " . sqlesc('%'.$searchstr.'%') . " OR `ori_descr` LIKE " . sqlesc('%'.$searchstr.'%') . "";
       //$wherea[] = "0";
       $addparam .= "search=" . urlencode($searchstr) . "&amp;";
       $orderby = "";

@@ -165,6 +165,7 @@ require_once "include/user_functions.php";
       
     }
 
+    $GLOBALS['tbTpl']->assign('html', $HTMLOUT);
     $GLOBALS['tbTpl']->display('db:tb_cpanel_bans.html');
 	xoops_cp_footer();
 	exit(0);
