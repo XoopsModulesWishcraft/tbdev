@@ -1,0 +1,11 @@
+<{includeq file="db:tb_header.html"}>
+<h1><{$smarty.const._TBDEV_LANG_TEXT_NFOFOR}><a href='details.php?id=<{$id}>'>".<{$a.name}></a></h1>
+<table border='1' cellspacing='0' cellpadding='5'>
+	<tr>
+		<td class='text'>
+			<pre><{$a.nfo}></pre>
+    	</td>
+    </tr>
+</table>
+<p align='center'><{$smarty.const._TBDEV_LANG_TEXT_FORBEST}><a href='ftp://<{$smarty.server.HTTP_HOST}>/misc/linedraw.ttf'><{$smarty.const._TBDEV_LANG_TEXT_LINEDRAWN}></a><{$smarty.const._TBDEV_LANG_TEXT_FONT}></p>
+<{includeq file="db:tb_footer.html"}>

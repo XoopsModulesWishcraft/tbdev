@@ -1,0 +1,21 @@
+<{includeq file="db:tb_header.html"}>
+<table border='0' class='main' cellspacing='0' cellpadding='0'>
+    <tr>
+      <td class='embedded'><img src='pic/email.gif' alt='' /></td>
+      <td class='embedded' style='padding-left: 10px'><font size='3'><b><{$smarty.const._TBDEV_LANG_EMAIL_SEND}><{$username}></b></font></td>
+    </tr>
+</table>
+<form method='post' action='email-gateway.php?id=$id'>
+    <table border='1' cellspacing='0' cellpadding='5'>
+	    <tr><td class='rowhead'><{$smarty.const._TBDEV_LANG_EMAIL_YOUR_NAME}></td><td><input type='text' name='from' size='80' /></td></tr>
+	    <tr><td class='rowhead'><{$smarty.const._TBDEV_LANG_EMAIL_YOUR_EMAIL}></td><td><input type='text' name='from_email' size='80' /></td></tr>
+	    <tr><td class='rowhead'><{$smarty.const._TBDEV_LANG_EMAIL_SUBJECT}></td><td><input type='text' name='subject' size='80' /></td></tr>
+	    <tr><td class='rowhead'><{$smarty.const._TBDEV_LANG_EMAIL_MESSAGE}></td><td><textarea name='message' cols='80' rows='20'></textarea></td></tr>
+	    <tr><td colspan='2' align='center'><input type='submit' value='<{$smarty.const._TBDEV_LANG_EMAIL_SEND}>' class='btn' /></td></tr>
+    </table>
+/form>
+<p>
+<font class='small'><b><{$smarty.const._TBDEV_LANG_EMAIL_NOTE_IP}></b><{$smarty.const._TBDEV_LANG_EMAIL_IP}><br />
+<{$smarty.const._TBDEV_LANG_EMAIL_VALID}></font>
+</p>
+<{includeq file="db:tb_footer.html"}>

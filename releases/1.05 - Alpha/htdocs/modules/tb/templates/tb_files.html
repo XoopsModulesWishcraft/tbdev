@@ -1,0 +1,14 @@
+<{includeq file="db:tb_header.html"}>
+<a name='top'></a>
+<table class='main' border='1' cellspacing='0' cellpadding='5'>
+<tr><td class='colhead'><{$smarty.const._TBDEV_LANG_FILELIST_PATH}></td><td class='colhead' align='right'><{$smarty.const._TBDEV_LANG_FILELIST_SIZE}></td></tr>
+<{assign var="counter" value=0}>
+<{foreach item=subrow from=$rows}>
+	<{if ($counter !== 0 && $counter % 10 == 0) }>
+		<tr><td colspan='2' align='right'><a href='#top'><img src='<{$xoConfig.pic_base_url}>/top.gif' alt='' /></a></td></tr>
+	<{/if}>
+	<tr><td><{$subrow.filename}></td><td align='right'><{$subrow.size}></td></tr>
+<{assign var="counter" value=$counter+1}>				
+<{/foreach}>
+</table>
+<{includeq file="db:tb_footer.html"}>

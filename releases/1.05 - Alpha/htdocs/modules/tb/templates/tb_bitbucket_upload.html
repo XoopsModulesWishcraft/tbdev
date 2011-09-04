@@ -1,0 +1,16 @@
+<{includeq file="db:tb_header.html"}>
+<h1><{$smarty.const._TBDEV_LANG_BITBUCKET_BBUPLOAD}></h1>
+<form method='post' action='<{$xoConfig.baseurl}>/bitbucket-upload.php' enctype='multipart/form-data'>
+	<p><b><{$smarty.const._TBDEV_LANG_BITBUCKET_MAXIMUM}> <{$bb_upload_size}> <{$smarty.const._TBDEV_LANG_BITBUCKET_BYTES}></b></p>
+    <table border='1' cellspacing='0' cellpadding='5'>
+    <tr><td class='rowhead'><{$smarty.const._TBDEV_LANG_BITBUCKET_UPLOAD_FILE}></td><td><input type='file' name='file' size='60' /></td></tr>
+    <tr><td colspan='2' align='center'><input type='submit' value='<{$smarty.const._TBDEV_LANG_BITBUCKET_UPLOAD}>' class='btn' /></td></tr>
+    </table>
+</form>
+<br />
+<table class='main' width='410' border='0' cellspacing='0' cellpadding='0'>
+	<tr><td class='embedded'>
+    <font class='small'><{$smarty.const._TBDEV_LANG_BITBUCKET_DISCLAIMER}></font>
+   	</td></tr>
+</table>
+<{includeq file="db:tb_footer.html"}>

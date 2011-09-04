@@ -1,0 +1,74 @@
+<{includeq file="db:tb_header.html"}>
+<div id='wrapper' style='width:90%;border:1px solid black;background-color:pink;'>
+    <{$cloud}>
+</div><br /><br />
+<form method='get' action='browse.php'>
+    <table class='bottom'>
+    <tr>
+    <td class='bottom'>
+		<table class='bottom'>
+		<tr>
+		<{assign var="i" value=0}>
+		<{foreach from=$cats item=cat}>
+		<{if ($i && $i % $xoConfig.catsperrow == 0)}></tr><tr><{/if}>
+		<td class='bottom' style='padding-bottom: 2px;padding-left: 7px;align:left;border:1px solid;'>
+		      <input name='c<{$cat.id}>' type="checkbox" <{if in_array($cat.id,$wherecatina) }> checked='checked'<{/if}> value='1' /><a class='catlink' href='browse.php?cat=<{$cat.id}>'><{$cat.name}></a></td>
+		      
+		      <{assign var="i" value=$i+1}>
+		<{/foreach}>
+		<{assign var="ncats" value=count($cats)}>
+		<{assign var="nrows" value=ceil($ncats/$xoConfig.catsperrow)}>
+		<{if not $lastrowcols eq 0}>
+		 	<{if not $nopos eq 1 }>
+		        <td class='bottom' rowspan='<{$rowspan}>'>&nbsp;</td>
+		    <{/if}>
+		    <td class='bottom' style="padding-left: 5px"><div align='left'>(<a href='browse.php?all=1'><b><{$smarty.const._TBDEV_LANG_BROWSE_SHOW_ALL}></b></a>)</div></td>
+		<{/if}>
+		</tr>
+		</table>
+	</td>
+    <td class='bottom'>
+    <table class='main'>
+      <tr>
+        <td class='bottom' style='padding: 1px;padding-left: 10px'>
+          <select name='incldead'>
+    <option value='0'><{$smarty.const._TBDEV_LANG_BROWSE_ACTIVE}></option>
+    <option value='1'<{if $smarty.get.incldead == 1 }> selected='selected'<{/if}>><{$smarty.const._TBDEV_LANG_BROWSE_INC_DEAD}></option>
+    <option value='2'<{if $smarty.get.incldead == 2 }> selected='selected'<{/if}>><{$smarty.const._TBDEV_LANG_BROWSE_DEAD}></option>
+          </select>
+        </td>        
+	<{if $ncats % $catsperrow == 0}>
+    	<td class='bottom' style='padding-left: 15px' rowspan='<{$nrows}>' valign='middle' align='right'><div align='left'>(<a href='browse.php?all=1'><b><{$smarty.const._TBDEV_LANG_BROWSE_SHOW_ALL}></b></a>)</div></td>
+    <{/if}>
+	</tr>
+      <tr>
+        <td class='bottom' style='padding: 1px;padding-left: 10px'>
+        <div align='center'>
+          <input type='submit' class='btn' value='<{$smarty.const._TBDEV_LANG_BROWSE_GO}>' />
+        </div>
+        </td>
+      </tr>
+      </table>
+    </td>
+    </tr>
+</table>
+</form>
+<{if strlen($searchstr)>0}>
+<h2><{$smarty.const._TBDEV_LANG_BROWSE_SEARCH}> "<{$searchstr}>"</h2>
+<{/if}>
+<{if $count}> 
+<{$pager}>
+<{if $torrenttable}>
+<{includeq file="db:tb_torrenttable.html" torrents=$torrents variant=$variant}>
+<{/if}>
+<{$pager}>
+<{else}>
+    <{if strlen($searchstr)>0}>
+        <h2><{$smarty.const._TBDEV_LANG_BROWSE_NOT_FOUND}></h2>
+        <p><{$smarty.const._TBDEV_LANG_BROWSE_TRYAGAIN}></p>
+    <{else}>
+        <h2><{$smarty.const._TBDEV_LANG_BROWSE_NOTHING}></h2>
+        <p><{$smarty.const._TBDEV_LANG_BROWSE_SORRY}></p>
+	<{/if}>
+<{/if}>
+<{includeq file="db:tb_footer.html"}>

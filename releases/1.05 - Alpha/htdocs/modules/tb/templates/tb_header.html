@@ -1,0 +1,59 @@
+<{if $xoConfig.support_mod_donations}>
+<table width='100%' cellspacing='0' cellpadding='0' style='background: transparent'>
+<tr>
+	<td class='clear'>
+    	<div id='logostrip'>
+	      	<img src='<{$xoConfig.pic_base_url}>/logo.jpg' alt='' />
+    	  	<a href='<{$xoops_url}>/modules/donations/index.php'><img src='<{$xoConfig.pic_base_url}>/x-click-but04.gif' border='0' alt='<{$smarty.const._TBDEV_LANG_GL_DONATE}>' title='<{$smarty.const._TBDEV_LANG_GL_DONATE}>' style='margin-top: 5px' /></a>
+      	</div>
+      </td>
+</tr>
+</table>
+<{/if}>
+
+<table class='mainouter' width='100%' border='1' cellspacing='0' cellpadding='10'>
+	<{includeq file="db:tb_statusbar.html"}>
+	<tr>
+		<td class='outer'>
+      		<div id='submenu'>
+		    <{if $curuser}> 
+   				<div class='tb-top-left-link'>
+      				<a href='<{$xoops_url}>/modules/tb/index.php'><{$smarty.const._TBDEV_LANG_GL_HOME}></a>
+      				<a href='<{$xoops_url}>/modules/tb/browse.php'><{$smarty.const._TBDEV_LANG_GL_BROWSE}></a>
+      				<a href='<{$xoops_url}>/modules/tb/search.php'><{$smarty.const._TBDEV_LANG_GL_SEARCH}></a>
+      				<a href='<{$xoops_url}>/modules/tb/upload.php'><{$smarty.const._TBDEV_LANG_GL_UPLOAD}></a>
+      				<a href='<{$xoops_url}>/modules/tb/chat.php'><{$smarty.const._TBDEV_LANG_GL_CHAT}></a>
+      				<a href='<{$xoops_url}>/modules/tb/forums.php'><{$smarty.const._TBDEV_LANG_GL_FORUMS}></a>
+            		<a href='<{$xoops_url}>/modules/tb/topten.php'><{$smarty.const._TBDEV_LANG_GL_TOP_10}></a>
+      				<a href='<{$xoops_url}>/modules/tb/rules.php'><{$smarty.const._TBDEV_LANG_GL_RULES}></a>
+      				<a href='<{$xoops_url}>/modules/tb/faq.php'><{$smarty.const._TBDEV_LANG_GL_FAQ}></a>
+      				<a href='<{$xoops_url}>/modules/tb/links.php'><{$smarty.const._TBDEV_LANG_GL_LINKS}></a>
+      				<a href='<{$xoops_url}>/modules/tb/staff.php'><{$smarty.const._TBDEV_LANG_GL_STAFF}></a>
+      			</div>
+      			<div class='tb-top-right-link'>
+				<{if $curuser.class => UC_MODERATOR }>
+					<a href='<{$xoops_url}>/modules/tb/admin.php'><{$smarty.const._TBDEV_LANG_GL_ADMIN}></a>
+				<{/if}>
+					<a href='<{$xoops_url}>/modules/tb/my.php'><{$smarty.const._TBDEV_LANG_GL_PROFILE}></a>
+      				<a href='<{$xoops_url}>/modules/tb/logout.php'><{$smarty.const._TBDEV_LANG_GL_LOGOUT}></a>
+      			</div>
+    		<{else}>
+      			<div class='tb-top-left-link'>
+      				<a href='<{$xoops_url}>/modules/tb/login.php'><{$smarty.const._TBDEV_LANG_GL_LOGIN}></a>
+      				<a href='<{$xoops_url}>/modules/tb/signup.php'><{$smarty.const._TBDEV_LANG_GL_SIGNUP}></a>
+      				<a href='<{$xoops_url}>/modules/tb/recover.php'><{$smarty.const._TBDEV_LANG_GL_RECOVER}></a>
+      			</div>
+    		<{/if}>
+    		</div>
+    	</td>
+    </tr>
+    <tr><td align='center' class='outer' style='padding-top: 20px; padding-bottom: 20px'>
+	<{if $xoConfig.support_mod_pm and $xoConfig.msg_alert and $statusbar.unread>0}>
+    <p><table border='0' cellspacing='0' cellpadding='10' bgcolor='red'>
+       <tr>
+       		<td style='padding: 10px; background: red'>
+       			<b><a href='<{$xoops_url}>/modules/pm/index.php'><font color='white'><{$statusbar.warn_inbox}>!</font></a></b>
+            </td>
+       </tr>
+    </table></p>;
+    <{/if}>

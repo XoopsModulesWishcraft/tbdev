@@ -1,0 +1,118 @@
+<table border='1' cellspacing='0' cellpadding='5'>
+	<tr>
+    	<td class='colhead' align='center'><{$smarty.const._TBDEV_LANG_TORRENTTABLE_TYPE}></td>
+    	<td class='colhead' align='left'><{$smarty.const._TBDEV_LANG_TORRENTTABLE_NAME}></td>
+    	<{if $wait}>
+		<td class='colhead' align='center'><{$smarty.const._TBDEV_LANG_TORRENTTABLE_WAIT}></td>
+		<{/if}>
+		<{if $variant eq "mytorrents"}>
+  		<td class='colhead' align='center'><{$smarty.const._TBDEV_LANG_TORRENTTABLE_EDIT}></td>
+    	<td class='colhead' align='center'><{$smarty.const._TBDEV_LANG_TORRENTTABLE_VISIBLE}></td>
+		<{/if}>
+		<td class='colhead' align='right'><{$smarty.const._TBDEV_LANG_TORRENTTABLE_FILES}></td>
+    	<td class='colhead' align='right'><{$smarty.const._TBDEV_LANG_TORRENTTABLE_COMMENTS}></td>
+        <td class='colhead' align='center'><{$smarty.const._TBDEV_LANG_TORRENTTABLE_ADDED}></td>
+    	<td class='colhead' align='center'><{$smarty.const._TBDEV_LANG_TORRENTTABLE_TTL}></td>
+    	<td class='colhead' align='center'><{$smarty.const._TBDEV_LANG_TORRENTTABLE_SIZE}></td>
+	    <td class='colhead' align='center'><{$smarty.const._TBDEV_LANG_TORRENTTABLE_SNATCHED}></td>
+    	<td class='colhead' align='right'><{$smarty.const._TBDEV_LANG_TORRENTTABLE_SEEDERS}></td>
+    	<td class='colhead' align='right'><{$smarty.const._TBDEV_LANG_TORRENTTABLE_LEECHERS}></td>
+		<{if $variant eq "index"}>
+		<td class='colhead' align='center'><{$smarty.const._TBDEV_LANG_TORRENTTABLE_UPPEDBY}></td>
+		<{/if}>
+    </tr>
+	<{foreach item=row key=id from=$torrents}>
+	<tr class="<{cycle values='even,odd'}>">
+		<td align='center' style='padding: 0px'>";
+        <{if isset($row.category.data.cat_name)}> 
+        	<a href='<{$xoops_url}>/modules/tb/browse.php?cat=<{$row.torrent.data.category}>'>
+        	<{if isset($row.category.data.cat_pic) and ! empty($row.category.data.cat_pic)}>
+            <img border='0' src='<{$xoConfig.pic_base_url}>caticons/<{$row.category.data.cat_pic}>' alt='<{$row.category.data.cat_name}>' />
+            <{else}>
+            <{$row.category.data.cat_name}>
+            <{/if}>
+            </a>
+        <{else}>
+        &dash;
+        <{/if}>
+        </td>
+        <td align='left'><a href='<{$xoops_url}>/modules/tb/details.php?<{if $variant eq "mytorrents"}>returnto=<{php}> echo urlencode($_SERVER["REQUEST_URI"]);<{/php}>&amp;id=<{$id}><{elseif $variant eq "index"}>&amp;hit=1<{/if}>'><b><{$row.torrent.data.name}></b></a>
+		<{if $row.torrent.data.wait}>
+			<assign item="elapsed" value=}>
+		<{/if}>
+		<{if $row.torrent.data.elapsed < $row.torrent.data.wait}>
+	        <assign item="color" value=}>
+	    <td align='center'><span style='white-space: nowrap;'><a href='<{$xoops_url}>/modules/tb/faq.php#dl8'><font color='<{$row.torrent.data.color}>'><{php}> echo number_format($this->_tpl['wait'] - $this->_tpl['elapsed']);<{/php}>&nbsp;<{$smarty.const._TBDEV_LANG_TORRENTTABLE_WAIT_H}></font></a></span></td>
+	    <{else}>
+	    <td align='center'><span style='white-space: nowrap;'><{$smarty.const._TBDEV_LANG_TORRENTTABLE_WAIT_NONE}></span></td>
+        <{/if}>
+        <{if $variant eq "mytorrents"}>
+            </td><td align='center'><a href='<{$xoops_url}>/modules/tb/edit.php?returnto=<{php}> echo urlencode($_SERVER["REQUEST_URI"]);<{/php}>&amp;id=<{$id}>'><{$smarty.const._TBDEV_LANG_TORRENTTABLE_EDIT}></a>
+        <{/if}>
+        </td>
+        <{if $variant eq "mytorrents"}>
+        <td align='right'>
+            <{if $row.torrent.data.visible eq "no"}>
+                <b><{$smarty.const._TBDEV_LANG_TORRENTTABLE_NOT_VISIBLE}></b>
+            <{else}>
+                <{$smarty.const._TBDEV_LANG_TORRENTTABLE_VISIBLE}>
+            <{/if}>
+        </td>
+        <{/if}>
+        <{if $row.torrent.data.type eq "single"}>
+        	<td align='right'><{$row.torrent.data.numfiles}></td>
+        <{else}> 
+            <{if $variant eq "index"}>
+            	<td align='right'><b><a href='<{$xoops_url}>/modules/tb/filelist.php?id=<{$id}>'><{$row.torrent.data.numfiles}></a></b></td>
+            <{else}>
+            	<td align='right'><b><a href='<{$xoops_url}>/modules/tb/filelist.php?id=<{$id}>'><{$row.torrent.data.numfiles}></a></b></td>
+            <{/if}>
+        <{/if}>
+        <{if !$row.torrent.data.comments}>
+        	<td align='right'><{$row.torrent.data.comments}></td>
+        <{else}> 
+            <{if $variant eq "index"}>
+            	<td align='right'><b><a href='<{$xoops_url}>/modules/tb/details.php?id=$id&amp;hit=1&amp;tocomm=1'><{$row.torrent.data.comments}></a></b></td>
+            <{else}>
+            	<td align='right'><b><a href='<{$xoops_url}>/modules/tb/details.php?id=$id&amp;page=0#startcomments'><{$row.torrent.data.comments}></a></b></td>
+            <{/if}>
+        <{/if}>
+        <td align='center'><span style='white-space: nowrap;'><{$row.torrent.data.date.added}></span></td>
+		<{if $row.torrent.data.ttl eq 1}>
+			<td align='center'><{$smarty.const._TBDEV_LANG_TORRENTTABLE_HOUR_SINGULAR}></td>
+		<{else}>
+			<td align='center'><{$smarty.const._TBDEV_LANG_TORRENTTABLE_HOUR_PLURAL}></td>
+		<{/if}> 
+    	<td align='center'><{$row.torrent.data.mksize.size}></td>
+		<{if not $row.torrent.data.times_completed eq 1}>
+			<td align='center'><{$row.torrent.data.number_format.times_completed}><br /><{$smarty.const._TBDEV_LANG_TORRENTTABLE_HOUR_PLURAL}></td>
+        <{else}>
+          	<td align='center'><{$row.torrent.data.number_format.times_completed}><br /><{$smarty.const._TBDEV_LANG_TORRENTTABLE_HOUR_SINGULAR}></td>
+        <{/if}>
+        <{if $row.torrent.data.seeders}>) 
+        	<{if $variant eq "index"}>
+               <{if $row.torrent.data.leechers}>)
+                	<td align='right'><b><a href='peerlist.php?id=$id#seeders'>
+                	<font color='<{$row.torrent.data.color.ratio}>'><{$row.torrent.data.number_format.seeders}></font></a></b></td>
+            	<{else}>
+            		<td align='right'><b><a class='<{$row.torrent.data.color.seeders}>' href='<{$xoops_url}>/modules/tb/peerlist.php?id=<{$id}>#seeders'><{$row.torrent.data.number_format.seeders}></a></b></td>
+            	<{/if}>
+            <{/if}>
+        <{else}>
+        	<td align='right'><span class='<{$row.torrent.data.color.seeders}>'><{$row.torrent.data.number_format.seeders}></span></td>
+        <{/if}>
+        <{if $row.torrent.data.leechers}>)
+        	<{if $variant eq "index"}>
+				<td align='right'><b><a href='<{$xoops_url}>/modules/tb/peerlist.php?id=<{$id}>#leechers'><{$row.torrent.data.number_format.leeches}></a></b></td>
+            <{else}>
+				<td align='right'><b><a class='<{$row.torrent.data.color.leeches}>' href='<{$xoops_url}>/modules/tb/peerlist.php?id=$id#leechers'><{$row.torrent.data.number_format.leeches}></a></b></td>
+        	<{/if}>
+        <{else}>
+            <td align='right'>0</td>
+        <{/if}>
+        <{if $variant eq "index"}>
+            <td align='center'><a href='<{$xoops_url}>/modules/tb/userdetails.php?id=<{$row.torrent.data.owner}>'><b><{$row.user.data.uname}></b></a></td>
+        <{/if}>
+	</tr>
+    <{/foreach}>
+ </table>

@@ -1,0 +1,9 @@
+<{includeq file="db:tb_header.html"}>
+<{if $count eq 0 }>
+<{$smarty.const._TBDEV_LANG_MYTORRENTS_NO_TORRENTS}>
+<{$smarty.const._TBDEV_LANG_MYTORRENTS_NO_UPLOADS}>
+<{else}>
+<{$pagenav}>
+<{includeq file='db:tb_torrenttable.html'}>
+<{/if}>
+<{includeq file="db:tb_footer.html"}>

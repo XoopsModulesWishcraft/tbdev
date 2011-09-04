@@ -1,0 +1,21 @@
+<{if $statusbar}>
+<tr>
+	<td colspan='2' style='padding: 2px;'>
+		<div id='statusbar'>
+		<div style='float:left;color:black;'><{$smarty.const._TBDEV_LANG_GL_MSG_WELCOME}>, <a href='<{$xoops_url}>/modules/tb/userdetails.php?id=<{$curuser.id}>'><{$curuser.username}></a>
+			<{$statusbar.IsDonor}><{$statusbar.warn}>&nbsp; [<a href='<{$xoops_url}>/modules/tb/logout.php'><{$smarty.const._TBDEV_LANG_GL_LOGOUT}></a>]&nbsp;<{$statusbar.reputation}>
+			<br /><{$smarty.const._TBDEV_LANG_GL_RATIO}>:<{$statusbar.ratio}>
+			&nbsp;&nbsp;<{$smarty.const._TBDEV_LANG_GL_UPLOADED}>:<{$statusbar.upped}>
+			&nbsp;&nbsp;<{$smarty.const._TBDEV_LANG_GL_DOWNLOADED}>:<{$statusbar.downed}>
+			&nbsp;&nbsp;<{$smarty.const._TBDEV_LANG_GL_ACT_TORRENTS}>:&nbsp;<img alt='<{$smarty.const._TBDEV_LANG_GL_SEED_TORRENTS}>' title='<{$smarty.const._TBDEV_LANG_GL_SEED_TORRENTS}>' src='<{$xoops_url}>/modules/tb/images/arrowup.gif' />&nbsp;{<{$statusbar.seedleech.yes}>
+			&nbsp;&nbsp;<img alt='<{$smarty.const._TBDEV_LANG_GL_LEECH_TORRENTS}>' title='<{$smarty.const._TBDEV_LANG_GL_LEECH_TORRENTS}>' src='<{$xoops_url}>/modules/tb/images/arrowdown.gif' />&nbsp;<{$statusbar.seedleech.no}></div>
+			<div><p style='text-align:right;'><{$statusbar.date}>		
+			<{if $statusbar.unread}>
+				<br />
+	    		<a href='<{$xoops_url}>/modules/pm/'>$inbox</a>
+	    	<{/if}>
+	    	</p></div>
+    	</div>
+    </td>
+</tr>
+<{/if}>
