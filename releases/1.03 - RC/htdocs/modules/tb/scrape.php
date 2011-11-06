@@ -10,10 +10,10 @@
 |   svn: http://sourceforge.net/projects/tbdevnet/
 |   Licence Info: GPL
 +------------------------------------------------
-|   $Date: 2009-09-05 18:48:06 +0100 (Sat, 05 Sep 2009) $
-|   $Revision: 199 $
-|   $Author: tbdevnet $
-|   $URL: https://tbdevnet.svn.sourceforge.net/svnroot/tbdevnet/trunk/TB/scrape.php $
+|   $Date$
+|   $Revision$
+|   $Author$
+|   $URL$
 +------------------------------------------------
 */
 require_once '../../mainfile.php';

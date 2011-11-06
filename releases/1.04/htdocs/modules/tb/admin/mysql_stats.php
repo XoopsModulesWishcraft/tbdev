@@ -10,10 +10,10 @@
 |   svn: http://sourceforge.net/projects/tbdevnet/
 |   Licence Info: GPL
 +------------------------------------------------
-|   $Date: 2009-09-23 16:01:47 +0100 (Wed, 23 Sep 2009) $
-|   $Revision: 208 $
-|   $Author: tbdevnet $
-|   $URL: admin/mysql_overview.php $
+|   $Date$
+|   $Revision$
+|   $Author$
+|   $URL$
 +------------------------------------------------
 */
 
