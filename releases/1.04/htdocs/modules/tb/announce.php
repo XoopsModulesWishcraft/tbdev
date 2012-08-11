@@ -21,7 +21,7 @@ require_once '../../mainfile.php';
 $GLOBALS['xoopsLogger']->activated = false;
 require_once 'include/config.php';
 
-define ('UC_VIP', 2);
+define('UC_VIP', 2);
 
 // DO NOT EDIT BELOW UNLESS YOU KNOW WHAT YOU'RE DOING!!
 

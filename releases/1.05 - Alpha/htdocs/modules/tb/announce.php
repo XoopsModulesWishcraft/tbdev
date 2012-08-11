@@ -26,7 +26,7 @@ $peers_handler = xoops_getmodulehandler('peers', 'td');
 
 xoops_loadLanguage('errors', 'tb');
 
-define ('UC_VIP', 2);
+define('UC_VIP', 2);
 
 // DO NOT EDIT BELOW UNLESS YOU KNOW WHAT YOU'RE DOING!!
 
