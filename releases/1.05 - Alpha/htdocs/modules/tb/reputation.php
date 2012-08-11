@@ -23,7 +23,7 @@ loggedinorreturn();
 
 $GLOBALS['lang'] = load_language('reputation');
 
-define( 'TIMENOW', time() ) ;
+define('TIMENOW', time() ) ;
 
 // mod or not?
 $is_mod = ( $GLOBALS['CURUSER']['class'] >= UC_MODERATOR ) ? TRUE : FALSE;

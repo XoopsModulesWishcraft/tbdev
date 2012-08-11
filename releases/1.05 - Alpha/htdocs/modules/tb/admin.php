@@ -35,8 +35,8 @@
     $action = isset($_GET["action"]) ? $_GET["action"] : '';
     $forum_pic_url = $GLOBALS['TBDEV']['pic_base_url'] . 'forumicons/';
   
-    define( 'F_IMAGES', $GLOBALS['TBDEV']['pic_base_url'] . 'forumicons');
-    define( 'POST_ICONS', F_IMAGES.'/post_icons');
+    define('F_IMAGES', $GLOBALS['TBDEV']['pic_base_url'] . 'forumicons');
+    define('POST_ICONS', F_IMAGES.'/post_icons');
     
     $ad_actions = array('bans'            => 'bans', 
                         'adduser'         => 'adduser', 
