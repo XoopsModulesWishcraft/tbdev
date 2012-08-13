@@ -169,8 +169,8 @@
 	define('_MI_TBDEV_GROUP_ADMINISTRATOR_USER_DESC','');
 	define('_MI_TBDEV_GROUP_SYSOP','Group System Operator belongs To');
 	define('_MI_TBDEV_GROUP_SYSOP_DESC','');
-	define('_MI_TBDEV_EDITOR', "Editor to use");
-	define('_MI_TBDEV_EDITOR_DESC', "Select the editor to use for large text");
+	define('_MI_TBDEV_EDITOR',"Editor to use");
+	define('_MI_TBDEV_EDITOR_DESC',"Select the editor to use for large text");
 	define('_MI_TBDEV_COLORS_CLOUD','Colours to randomly use in search cloud');
 	define('_MI_TBDEV_COLORS_CLOUD_DESC','Seperated by a pipe symbole (|)');
 	define('_MI_TBDEV_NUMBER_IN_CLOUD','Number of items to display in search cloud');
